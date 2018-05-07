@@ -1,0 +1,108 @@
+.order {
+  color: #333;
+  background: @lightGrey;
+  ul{
+    margin: 0;
+    padding: 0;
+    .fs(14);
+  }
+  .container{
+    .mb(75);
+    .block{
+      background-color: @white;
+      .mb(10);
+      .pt(12);
+      .pb(12);
+      .pl(10);
+      .pr(10);
+      h2{
+        margin: 0;
+        .fs(15);
+        .mb(5);
+      }
+      h2+span{
+        display: block;
+        .fs(13);
+        .mb(5);
+      }
+      .list-wrapper{
+        .mt(10);
+        .pt(5);
+        border-top: 1px solid @borderBottomColor;
+        span{
+          color: @darkGrey;
+        }
+      }
+      button{
+        .w(150);
+        .mt(10);
+        .pt(2);
+        .pb(2);
+        outline: 0;
+        background-color: #999999;
+      }
+    }
+    ul.list{
+      margin: 0;
+      padding: 0;
+      >li{
+        .pt(5);
+        .pb(5);
+        border-bottom: 1px solid @borderBottomColor;
+        >i{
+          top: 50%;
+          .mt(-6);
+          .right(0);
+          color: #333333;
+        }
+      }
+    }
+  }
+  .extra{
+    .pt(9);
+  }
+  input[type="text"]{
+    width: 100%;
+    .pt(6);
+    .pb(6);
+    outline: 0;
+    border-width: 0;
+    border-bottom-width: 1px;
+    border-color: @borderBottomColor;
+  }
+  input[type="checkbox"]+span{
+    display: inline;
+    .fs(10);
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: @placeholderColor;
+      opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: @placeholderColor;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: @placeholderColor;
+  }
+
+  .footer{
+    display: flex;
+    background: @white;
+    color: #333;
+    .fs(12);
+    >div{
+      flex: 1;
+      .pt(10);
+      .pr(10);
+      .pb(10);
+      .pl(10);
+    }
+    button{
+      .w(100);
+      color: @white;
+      background-color: #79522a;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.cal{
+  .pt(15);
+  .pl(5);
+  .pr(5);
+  .fs(13);
+  padding-bottom: 100%;
+  background: @lightGrey;
+  .select-wrapper{
+    display: flex;
+    background: @white;
+    align-items: center;
+    select{
+      flex: 1;
+      .pt(16);
+      .pb(16);
+      .pl(7);
+      .fs(15);
+      width: 100%;
+      border-width: 0;
+      background: @white;
+    }
+    i{
+      .pr(8);
+      .fs(19);
+    }
+  }
+  .date-picker{
+    .mt(15);
+    display: flex;
+    align-items: center;
+    background: @white;
+    >div{
+      .pt(10);
+      .pb(10);
+    }
+    >*{
+      width: 33.333%;
+    }
+    >.fa{
+      .fs(20);
+      color: @darkGrey;
+    }
+    .date-picker-trigger{
+      .fs(20);
+      font-weight: bold;
+    }
+  }
+  .divider{
+    .fs(15);
+    .pt(15);
+    .pb(15);
+  }
+  .number-picker{
+    .pt(10);
+    .pb(10);
+    .pl(5);
+    .pr(5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: @white;
+    &.mt{
+      .mt(15);
+    }
+    .picker{
+      display: flex;
+      align-items: center;
+      .fa{
+        .fs(25);
+        color: #8c8c8c;
+      }
+      label{
+        .fs(15);
+      }
+      h1{
+        .w(10);
+        .pl(30);
+        .pr(30);
+        .fs(25);
+        color: #8c8c8c;
+        font-weight: 400;
+      }
+    }
+  }
+}

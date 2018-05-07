@@ -1,0 +1,200 @@
+/** display */
+.di{
+	display: inline;
+}
+
+.db{
+	display: block;
+}
+
+.di-b{
+	display: inline-block;
+}
+
+/** size */
+.fs(@px){
+	font-size: unit(@px / 37.5, rem);
+}
+
+.w(@px){
+	width: unit(@px / 37.5,rem);
+}
+
+.h(@px){
+	height: unit(@px/37.5,rem);
+}
+
+.mh(@px){
+	min-height: unit(@px/37.5,rem);
+}
+
+.lh(@px){
+	line-height: unit(@px / 37.5,rem);
+}
+
+/* margin */
+.mt(@px){
+	margin-top: unit(@px / 37.5, rem);
+}
+
+.mb(@px){
+	margin-bottom: unit(@px/37.5,rem);
+}
+
+.mr(@px){
+	margin-right: unit(@px/37.5,rem);
+}
+
+.ml(@px){
+	margin-left: unit(@px/37.5,rem);
+}
+
+.no-mt{
+	margin-top: 0 !important;
+}
+
+.no-bt{
+	margin-bottom: 0 !important;
+}
+
+.no-ml{
+	margin-left: 0 !important;
+}
+
+.no-mr{
+	margin-right: 0 !important;
+}
+
+.no-m{
+	margin: 0 !important;
+}
+
+.no-border{
+	border-width: 0px !important;
+}
+
+/* padding */
+.pt(@px){
+	padding-top: unit(@px / 37.5, rem);
+}
+
+.pb(@px){
+	padding-bottom: unit(@px/37.5,rem);
+}
+
+.pr(@px){
+	padding-right: unit(@px/37.5,rem);
+}
+
+.pl(@px){
+	padding-left: unit(@px/37.5,rem);
+}
+
+.no-p{
+	padding: 0 !important;
+}
+
+/** position */
+
+.pos-r{
+	position: relative;
+}
+
+.pos-a{
+	position: absolute;
+}
+
+.top(@px){
+	top: unit(@px/37.5,rem);
+}
+
+.bottom(@px){
+	bottom: unit(@px/37.5,rem);
+}
+
+.left(@px){
+	left: unit(@px/37.5,rem);
+}
+
+.right(@px){
+	right: unit(@px/37.5,rem);
+}
+
+/** text align */
+
+.ta-c{
+	text-align: center;
+}
+
+/** float */
+.fl{
+	float: left;
+	&:after{
+		content: '';
+    display: block;
+    clear: both;
+	}
+}
+
+.fr{
+	float: right;
+	&:after{
+		content: '';
+    display: block;
+    clear: both;
+	}
+}
+
+
+@white: #FFF;
+@black: #000;
+@primaryColor: #242424;
+@iconColor: #d8e5f0;
+@lightGrey: #f2f2f2;
+@grey: #e4e4e4;
+@activeBgColor: #a4b3c0;
+@darkGrey: #c9c9c9;
+@linkColor: #3b3b3b;
+@dark: #333333;
+@red: #fc361d;
+@textColor: #393939;
+/** block */
+@blockTitleColor: #393939;
+@blockTextColor: #8a8a8a;
+@labelBorderColor: #1a9bfc;
+/** house layout list */
+@borderTopColor: #ebebeb;
+@primaryBtnColor: #249cd3;
+/** order */
+@orangeColor: #fd9827;
+@orangeBgColor: #fb8047;
+@lightBlue: #249cd3;
+@borderBottomColor: #ebebeb;
+@placeholderColor: #a7a7a7;
+@redColor: #fc0d1c;
+@labelBgColor: #aeaeae;
+@labelColor: #565656;
+
+.orange{
+	color: @orangeColor;
+}
+
+.orange-bg{
+	background-color: @orangeBgColor;
+}
+
+.white{
+	color: @white;
+}
+
+.white-bg{
+	background-color: @white;
+}
+
+.red{
+	color: @redColor;
+}
+
+.light-blue{
+	color: @lightBlue;
+}

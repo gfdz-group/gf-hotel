@@ -1,0 +1,61 @@
+.roomsList{
+  background: @lightGrey;
+  .search{
+    display: flex;
+    .pt(6);
+    .pr(10);
+    .pb(6);
+    .pl(10);
+    .fa{
+      .h(30);
+      .lh(30);
+      .pl(10);
+      color: @darkGrey;
+      background: @white;
+    }
+    input{
+      .pl(5);
+      width: 100%;
+      outline: 0;
+      border-width: 0;
+    }
+  }
+  ul{
+    margin: 0;
+    .mt(5);
+    padding: 0;
+    .pl(6);
+    .pr(6);
+    list-style: none;
+    background: @white;
+    >li{
+      .pt(10);
+      .pb(10);
+      border-bottom: 1px solid #f0f0f0;
+      a{
+        display: flex;
+        text-decoration: none;
+        img{
+          .w(64);
+          .h(64);
+        }
+        .desc{
+          flex: 1;
+          .pl(10);
+          color: #1a1a1a;
+          .labels{
+            .mt(25);
+            .fs(12);
+            color: #707070;
+            >span{
+             .mr(10);
+            }
+          }
+        }
+        button{
+          .h(25);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+.room-detail{
+  color: @textColor;
+  h2{
+    .fs(15);
+    margin: 0;
+    .mb(5);
+  }
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .features{
+    .pt(10);
+    .pr(10);
+    .pl(10);
+    .pb(10);
+    border-bottom: 1px solid #ebebeb;
+    background-color: white;
+    >ul{
+      list-style: square;
+      .pl(20);
+      .fs(14);
+    }
+  }
+  .devices{
+    .pt(10);
+    .pr(10);
+    .pl(10);
+    .pb(10);
+    background-color: white;
+    >ul{
+      display: flex;
+      flex-wrap: wrap;
+      .lh(32);
+      >li{
+        width: 33.3%;
+        >i.fa{
+          .mr(5);
+        }
+      }
+    }
+  }
+}
