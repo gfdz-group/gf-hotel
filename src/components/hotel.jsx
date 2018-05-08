@@ -106,7 +106,7 @@ class Hotel extends Component {
                   <li>按摩室</li>
                   <li>桑拿浴室</li>
                   <li>乒乓球室</li>
-                  <li>桌球室</li>
+                  <li>桌球室drefe</li>
                   <li>棋牌室</li>
                   <li>茶室</li>
                 </ul>
