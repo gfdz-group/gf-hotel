@@ -106,7 +106,7 @@ class Hotel extends Component {
                   <li>按摩室</li>
                   <li>桑拿浴室</li>
                   <li>乒乓球室</li>
-                  <li>桌球室drefe</li>
+                  <li>桌球室</li>
                   <li>棋牌室</li>
                   <li>茶室</li>
                 </ul>
@@ -119,7 +119,7 @@ class Hotel extends Component {
             <ul className="list">
               <li className="list-item">
                 <h1>
-                  <i className="fa fa-clock-o"></i>
+                  {/*<i className="fa fa-clock-o"></i>*/}
                   入离时间
                   <p className="no-m">
                     入店时间：14:00以后
@@ -129,7 +129,7 @@ class Hotel extends Component {
               </li>
               <li className="list-item">
                 <h1>
-                  <i className="fa fa-list"></i>
+                  {/*<i className="fa fa-list"></i>*/}
                   儿童政策及加床政策
                 </h1>
                 <ul className="vertical">
@@ -144,7 +144,7 @@ class Hotel extends Component {
           </div>
           <FooterBtn
             color="#FFF"
-            bgColor="#79522a"
+            bgColor="#ce3a45"
             text="我要订房"
             to={`/calendar/${this.state.id}`}
           />

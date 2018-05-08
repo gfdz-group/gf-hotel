@@ -16,8 +16,9 @@ class RoomsList extends Component {
     return (
       <div className="roomsList">
         <div className="search">
-          <span className="fa fa-search"></span>
-          <input type="text" placeholder="搜索房间" />
+          <span className="fa fa-search">
+            <input type="text" placeholder="搜索房间" />
+          </span>
         </div>
         {/** 房间列表 */}
         <ul>

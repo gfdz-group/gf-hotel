@@ -4,16 +4,16 @@
     background-color: @lightGrey;
     >.block{
      .pt(5);
-     .pr(5);
+     .pr(8);
      .pb(5);
-     .pl(5);
+     .pl(8);
      .mb(7.35);
      background-color: white;
      h1{
        .fs(16);
        .mt(8);
        .mb(8);
-       font-weight: normal;
+       font-weight: 500;
        color: @blockTitleColor;
        >i{
          .mr(5);
@@ -48,12 +48,14 @@
           >li{
             width: 33.33%;
             color: @blockTextColor;
+            .fs(15);
           }
           &.vertical{
             .mt(0);
             .ml(22);
             flex-direction: column;
-            list-style: square;          
+            list-style: square;
+            line-height: 0.6rem;
             >li{
               width: 100%;
             }
