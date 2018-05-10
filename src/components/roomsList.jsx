@@ -64,6 +64,13 @@ class RoomsList extends Component {
             price="380"
             labels="单人床,无早,免费取消"
           />
+          <RoomItem
+              id="1"
+              img="/assets/room03.jpg"
+              name="舒适单人间"
+              price="380"
+              labels="单人床,无早,免费取消"
+          />
         </ul>
         <Footer />
       </div>
