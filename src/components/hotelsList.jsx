@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from './common/Loading';
 import Banner from './common/bannerImage';
 import Header from './header';
 import Footer from './footer';
@@ -31,28 +32,32 @@ class HotelsList extends Component {
 
   render() {
     return (
-      <div className="hotelsList">
-        <Header title="品官房" />
-        <div className="container">
-          {/** banner image */}
-          <Banner image="/assets/u65.jpg" />
-          {/** list */}
-          <div className="gallery">
-            {this.state.hotels.map((hotel, idx) => {
-              return (
-                <div className="block" key={idx}>
-                  <Link to={`/hotel/${hotel.id}`}>
-                    <img src={hotel.faceImagePath} alt="" />
-                  </Link>
-                </div>
-              );
-            })}
+      this.state.hotels.length?
+      (
+        <div className="hotelsList">
+          <Header title="品官房" />
+          <div className="container">
+            {/** banner image */}
+            <Banner image="/assets/u65.jpg" />
+            {/** list */}
+            <div className="gallery">
+              {this.state.hotels.map((hotel, idx) => {
+                return (
+                  <div className="block" key={idx}>
+                    <Link to={`/hotel/${hotel.id}`}>
+                      <img src={hotel.faceImagePath} alt="" />
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+            {/** end of gallery */}
           </div>
-          {/** end of gallery */}
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    );
+      )
+      : <Loading />
+    )
   }
 }
 
