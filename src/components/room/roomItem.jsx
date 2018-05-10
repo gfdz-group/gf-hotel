@@ -28,7 +28,7 @@ class RoomItem extends Component {
             })}
           </div>
         </div>
-        <button className="white orange-bg">¥{price} /晚</button>
+        <button className="white orange-bg">¥{price} 起/晚</button>
         </Link>
       </li>
     );
