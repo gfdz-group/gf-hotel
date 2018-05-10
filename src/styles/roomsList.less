@@ -2,7 +2,7 @@
   background: @lightGrey;
   .search{
     display: flex;
-    .pt(6);
+    .pt(10);
     .pr(10);
     .pb(6);
     .pl(10);
@@ -10,12 +10,15 @@
       .h(30);
       .lh(30);
       .pl(10);
+      width: 100%;
       color: @darkGrey;
       background: @white;
+      border: 1px solid #dbdbdb;
+      border-radius: 35px;
     }
     input{
       .pl(5);
-      width: 100%;
+      width: 90%;
       outline: 0;
       border-width: 0;
     }
@@ -24,14 +27,16 @@
     margin: 0;
     .mt(5);
     padding: 0;
-    .pl(6);
-    .pr(6);
+    /*.pl(8);
+    .pr(8);*/
     list-style: none;
-    background: @white;
+    background: @lightGrey;
     >li{
-      .pt(10);
-      .pb(10);
-      border-bottom: 1px solid #f0f0f0;
+      .pt(12);
+      .pb(12);
+      .pl(10);
+      .mb(3);
+      background: @white;
       a{
         display: flex;
         text-decoration: none;
@@ -54,6 +59,11 @@
         }
         button{
           .h(25);
+          .pl(15);
+          .pr(10);
+          border-top-left-radius: 20px;
+          border-bottom-left-radius: 20px;
+          box-shadow: 0 2px 6px rgba(251,128,71,1);
         }
       }
     }
