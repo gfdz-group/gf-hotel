@@ -8,12 +8,27 @@ class HotelsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      /**  */
+      hotels: [],
     };
   }
-  componentDidMount() {
+
+  componentWillMount() {
     document.title = '官房大酒店';
   }
+
+  componentDidMount() {
+    this.callApi()
+      .then(res => { this.setState({hotels: res}); })
+      .catch(err => { console.error(err); });
+  }
+
+  async callApi() {
+    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do');
+    const body = await res.json();
+    if (res.status !== 200) throw Error(body.message);
+    return body;
+  }
+
   render() {
     return (
       <div className="hotelsList">
@@ -23,36 +38,15 @@ class HotelsList extends Component {
           <Banner image="/assets/u65.jpg" />
           {/** list */}
           <div className="gallery">
-            <div className="block">
-              <Link to="/hotel/1">
-                <img src="/assets/u5.jpg" alt="" />
-              </Link>
-            </div>
-            <div className="block">
-              <Link to="/hotel/2">
-                <img src="/assets/u01.jpg" alt="" />
-              </Link>
-            </div>
-            <div className="block">
-              <Link to="/hotel/3">
-                <img src="/assets/u00.jpg" alt="" />
-              </Link>
-            </div>
-            <div className="block">
-              <Link to="/hotel/4">
-                <img src="/assets/u02.jpg" alt="" />
-              </Link>
-            </div>
-            <div className="block">
-              <Link to="/hotel/4">
-                <img src="/assets/u03.jpg" alt="" />
-              </Link>
-            </div>
-            <div className="block">
-              <Link to="/hotel/4">
-                <img src="/assets/u04.jpg" alt="" />
-              </Link>
-            </div>
+            {this.state.hotels.map((hotel, idx) => {
+              return (
+                <div className="block" key={idx}>
+                  <Link to={`/hotel/${hotel.id}`}>
+                    <img src={hotel.faceImagePath} alt="" />
+                  </Link>
+                </div>
+              );
+            })}
           </div>
           {/** end of gallery */}
         </div>
