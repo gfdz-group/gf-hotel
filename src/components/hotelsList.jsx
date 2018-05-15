@@ -19,7 +19,11 @@ class HotelsList extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(res => { this.setState({hotels: res}); })
+      .then(res => { 
+        this.setState({hotels: res});
+        /** cache hotel lists */
+        localStorage.setItem('hotelLists', JSON.stringify(res));
+      })
       .catch(err => { console.error(err); });
   }
 

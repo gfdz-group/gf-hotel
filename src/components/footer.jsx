@@ -12,7 +12,7 @@ class Footer extends Component {
           </NavLink>
         </div>
         <div className="block">
-          <NavLink to="/rooms/1">
+          <NavLink to="/calendar">
             <i className="fa fa-star icon"></i>
             <span>住酒店</span>
           </NavLink>

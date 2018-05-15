@@ -4,21 +4,18 @@ import FooterBtn from './common/footerBtn';
 class Calendar extends Component {
   constructor(props) {
     super(props);
+    const hotels = JSON.parse(localStorage.getItem('hotelLists'));
+    const hotelId = this.props.match.params.hotelId? this.props.match.params.hotelId: hotels[0].id;
     this.state = {
-      hotels: [
-        { 
-          hotel_id: 1, 
-          hotel_name: '官房大酒店 (旗舰店)',
-          city: '丽江市',
-        },
-        {
-          hotel_id: 2,
-          hotel_name: '官房大酒店',
-          city: '昆明市',
-        },
-      ]
+      hotels,
+      hotelId,
+      handleChange: this.handleChange.bind(this),
     };
-  } 
+  }
+
+  handleChange(field, value) {
+    this.setState({[field]: value});
+  }
 
   componentDidMount() {
     document.title = '房间';
@@ -29,10 +26,19 @@ class Calendar extends Component {
       <div className="cal">
         {/** 酒店地址选择 */}
         <div className="select-wrapper">
-          <select className="pos">
+          <select
+            className="pos"
+            onChange={evt => {
+              this.state.handleChange('hotelId', evt.target.value);
+            }}
+          >
             { this.state.hotels.map((h, idx) => {
               return (
-                <option key={idx} value={h.hotel_id}>当前位置: {h.city} {h.hotel_name}</option>
+                <option 
+                  key={idx}
+                  value={h.id}
+                  selected={h.id===this.state.hotelId}
+                >当前位置: {h.city} {h.hotelName}</option>
               );
             })}
           </select>
@@ -86,7 +92,7 @@ class Calendar extends Component {
            color="#FFF"
            bgColor="#ce3a45"
            text="查找房间"
-           to={`/rooms/${this.state.hotels[0].hotel_id}`}
+           to={`/rooms/${this.state.hotelId}`}
         />
       </div>
     );
