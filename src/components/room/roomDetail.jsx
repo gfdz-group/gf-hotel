@@ -23,7 +23,10 @@ class roomDetail extends Component {
 
   async callApi(roomId) {
     if(!roomId) { throw new Error('Missing room id parameter'); }
-    const res = await fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}`);
+    const res = await fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}`, {
+      method: 'GET',
+      credentials: 'same-origin',
+    });
     const body = await res.json();
     if(res.status!==200) { throw new Error(body.message); }
     return body;
@@ -31,6 +34,7 @@ class roomDetail extends Component {
   
   render() {
     const { room } = this.state;
+    //console.log(room);
     return (
       isEmpty(room)? <Loading /> :
       <div className="room-detail">
@@ -66,7 +70,7 @@ class roomDetail extends Component {
           color="#FFF"
           bgColor="#ce3a45"
           text="立即预定"
-          to={`/order/${this.state.id}`} />
+          to={`/order/${room.roomId}`} />
       </div>
     );
   }

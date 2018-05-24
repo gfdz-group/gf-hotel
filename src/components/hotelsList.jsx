@@ -28,7 +28,10 @@ class HotelsList extends Component {
   }
 
   async callApi() {
-    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do');
+    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do',{
+      method: 'GET',
+      credentials: 'same-origin',
+    });
     const body = await res.json();
     if (res.status !== 200) throw Error(body.message);
     return body;
@@ -47,9 +50,10 @@ class HotelsList extends Component {
             <div className="gallery">
               {this.state.hotels.map((hotel, idx) => {
                 return (
-                  <div className="block" key={idx}>
+                  <div className="block pos-r" key={idx}>
                     <Link to={`/hotel/${hotel.id}`}>
                       <img src={hotel.faceImagePath} alt="" />
+                      <div className="title pos-a ta-c">{hotel.hotelName}</div>
                     </Link>
                   </div>
                 );

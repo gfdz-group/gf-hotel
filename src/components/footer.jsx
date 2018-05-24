@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
       <div className="footer">
         <div className="block">
-          <NavLink exact to="/hotels">
+          <NavLink exact to="/">
             <i className="fa fa-home icon"></i>
             <span>品官房</span>
           </NavLink>

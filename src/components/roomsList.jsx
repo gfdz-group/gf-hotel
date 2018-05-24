@@ -25,7 +25,10 @@ class RoomsList extends Component {
   }
 
   async callApi() {
-    const res = await fetch(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}`);
+    const res = await fetch(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}`, {
+      method: 'GET',
+      credentials: 'same-origin',
+    });
     const body = await res.json();
     if (res.status !== 200) throw Error(body.message);
     return body;

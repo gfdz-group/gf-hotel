@@ -28,7 +28,10 @@ class Hotel extends Component {
 
   async callApi(hotelId) {
     if(!hotelId) throw new Error('Missing hotel id parameter');
-    const res = await fetch(`/api/hotel/hotelManager/getHotelInfo.do?id=${hotelId}`);
+    const res = await fetch(`/api/hotel/hotelManager/getHotelInfo.do?id=${hotelId}`, {
+      method: 'GET',
+      credentials: 'same-origin',
+    });
     const body = await res.json();
     if (res.status !== 200) throw Error(body.message);
     return body;
