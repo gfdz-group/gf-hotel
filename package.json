@@ -43,6 +43,7 @@
     "style-it": "^2.0.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
+    "urijs": "^1.19.1",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.9.4",
@@ -100,5 +101,5 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0"
   },
-  "proxy": "http://192.168.17.222:8080/"
+  "proxy": "http://120.76.102.67:8280/"
 }
