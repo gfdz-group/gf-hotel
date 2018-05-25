@@ -50,8 +50,8 @@ class HotelsList extends Component {
             <div className="gallery">
               {this.state.hotels.map((hotel, idx) => {
                 return (
-                  <div className="block pos-r" key={idx}>
-                    <Link to={`/hotel/${hotel.id}`}>
+                  <div className="block" key={idx}>
+                    <Link className="pos-r" to={`/hotel/${hotel.id}`}>
                       <img src={hotel.faceImagePath} alt="" />
                       <div className="title pos-a ta-c">{hotel.hotelName}</div>
                     </Link>
