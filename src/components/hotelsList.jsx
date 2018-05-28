@@ -52,7 +52,7 @@ class HotelsList extends Component {
                 return (
                   <div className="block" key={idx}>
                     <Link className="pos-r" to={`/hotel/${hotel.id}`}>
-                      <img src={hotel.faceImagePath} alt="" />
+                      <img className="pos-a" src={hotel.faceImagePath} alt="" />
                       <div className="title pos-a ta-c">{hotel.hotelName}</div>
                     </Link>
                   </div>
