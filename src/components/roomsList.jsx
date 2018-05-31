@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
 import RoomItem from './room/roomItem';
+import Loading from './common/Loading';
 import Footer from './footer';
 
 class RoomsList extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      hotelId: this.props.match.params.hotelId,
+      rooms: null,
+    };
+  }
+
+  componentWillMount() {
+    document.title = '住酒店';
   }
 
   componentDidMount() {
-    document.title = '住酒店';
+    this.callApi()
+      .then(res => {
+        this.setState({rooms: res.roomList});
+      })
+      .catch(err => { console.error(err); });
+  }
+
+  async callApi() {
+    const res = await fetch(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}`, {
+      method: 'GET',
+      credentials: 'same-origin',
+    });
+    const body = await res.json();
+    if (res.status !== 200) throw Error(body.message);
+    return body;
   }
 
   render() {
     return (
+      this.state.rooms? (
       <div className="roomsList">
         <div className="search">
           <span className="fa fa-search">
@@ -22,58 +45,21 @@ class RoomsList extends Component {
         </div>
         {/** 房间列表 */}
         <ul>
-          <RoomItem 
-            id="1"
-            img="/assets/room01.jpg"
-            name="精致小套间"
-            price="380"
-            labels="加大床,无早,免费取消"
-          />
-          <RoomItem 
-            id="1"
-            img="/assets/room02.jpg"
-            name="家庭组合房"
-            price="380"
-            labels="加大床,无早,免费取消"
-          />
-          <RoomItem 
-            id="1"
-            img="/assets/room03.jpg"
-            name="舒适单人间"
-            price="380"
-            labels="单人床,无早,免费取消"
-          />
-          <RoomItem 
-            id="1"
-            img="/assets/room01.jpg"
-            name="精致小套间"
-            price="380"
-            labels="加大床,无早,免费取消"
-          />
-          <RoomItem 
-            id="1"
-            img="/assets/room02.jpg"
-            name="家庭组合房"
-            price="380"
-            labels="加大床,无早,免费取消"
-          />
-          <RoomItem 
-            id="1"
-            img="/assets/room03.jpg"
-            name="舒适单人间"
-            price="380"
-            labels="单人床,无早,免费取消"
-          />
-          <RoomItem
-              id="1"
-              img="/assets/room03.jpg"
-              name="舒适单人间"
-              price="380"
-              labels="单人床,无早,免费取消"
-          />
+          {this.state.rooms.map((r, idx) => {
+            return (
+              <RoomItem
+                key={idx}
+                id={r.id}
+                img={r.minImagePath}
+                name={r.name}
+                price={r.price}
+                labels="无早,免费取消"
+              />
+            );
+          })}
         </ul>
         <Footer />
-      </div>
+      </div>) : <Loading />
     );
   }
 }

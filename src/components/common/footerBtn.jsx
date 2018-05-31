@@ -5,11 +5,11 @@ class FooterBtn extends Component {
   render() {
     const { text, to, color, bgColor } = this.props; 
     return (
-      <div className="footer footer-btn" style={{color: color, backgroundColor: bgColor}}>
-        <Link to={to}>
+      <Link to={to}>
+        <div className="footer footer-btn" style={{color: color, backgroundColor: bgColor}}>
           {text}
-        </Link>
-      </div>
+        </div>
+      </Link>
     );
   }
 }

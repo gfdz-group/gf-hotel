@@ -34,15 +34,20 @@
       .pb(10);
     }
     >*{
-      width: 33.333%;
+      flex: 1;
     }
     >.fa{
       .fs(20);
       color: @darkGrey;
     }
     .date-picker-trigger{
-      .fs(20);
+      .fs(16);
       font-weight: bold;
+      outline: 0;
+      border-width: 0;
+      background: @white;
+      text-align: center;
+      width: 100%;
     }
   }
   .divider{
@@ -73,12 +78,13 @@
         .fs(15);
       }
       h1{
-        .w(10);
+        .w(20);
         .pl(30);
         .pr(30);
         .fs(25);
         color: #8c8c8c;
         font-weight: 400;
+        text-align: center;
       }
     }
   }

@@ -19,12 +19,19 @@ class HotelsList extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(res => { this.setState({hotels: res}); })
+      .then(res => { 
+        this.setState({hotels: res});
+        /** cache hotel lists */
+        localStorage.setItem('hotelLists', JSON.stringify(res));
+      })
       .catch(err => { console.error(err); });
   }
 
   async callApi() {
-    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do');
+    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do',{
+      method: 'GET',
+      credentials: 'same-origin',
+    });
     const body = await res.json();
     if (res.status !== 200) throw Error(body.message);
     return body;
@@ -44,8 +51,9 @@ class HotelsList extends Component {
               {this.state.hotels.map((hotel, idx) => {
                 return (
                   <div className="block" key={idx}>
-                    <Link to={`/hotel/${hotel.id}`}>
+                    <Link className="pos-r" to={`/hotel/${hotel.id}`}>
                       <img src={hotel.faceImagePath} alt="" />
+                      <div className="title pos-a ta-c">{hotel.hotelName}</div>
                     </Link>
                   </div>
                 );
