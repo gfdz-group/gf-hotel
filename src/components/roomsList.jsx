@@ -50,7 +50,7 @@ class RoomsList extends Component {
               <RoomItem
                 key={idx}
                 id={r.id}
-                img={r.minImagePath}
+                img={r.imagePath}
                 name={r.name}
                 price={r.price}
                 labels="无早,免费取消"
