@@ -68,7 +68,7 @@ class roomDetail extends Component {
         </div>
         <FooterBtn
           color="#FFF"
-          bgColor="#ce3a45"
+          bgColor="#494e5d"
           text="立即预定"
           to={`/order/${room.roomId}`} />
       </div>
