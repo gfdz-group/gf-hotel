@@ -160,11 +160,11 @@ class Order extends Component {
             <ul className="list">
               <li className="pos-r">
                 抵达酒店时间
-                <i className="pos-a">选择时间</i>
+                <span className="di fr">选择时间</span>
               </li>
               <li className="pos-r">
                   备选要求<span>无</span>
-                  <i className="pos-a fa fa-chevron-right"></i>
+                  <i className="pos-a fa fa-angle-right"></i>
               </li>
               <li className="pos-r no-border">
                 发票<span>请到前台索取发票</span>

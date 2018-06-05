@@ -16,10 +16,11 @@
     background-color: @lightGrey;
     .block{
       background-color: @white;
-      -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid #c4c4c4;
+      /*-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
       -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
       -ms-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);*/
       .mb(10);
       .pt(12);
       .pb(12);
@@ -32,7 +33,7 @@
       }
       h2+span{
         display: block;
-        .fs(13);
+        .fs(15);
         .mb(5);
       }
       .list-wrapper{
@@ -56,22 +57,27 @@
       margin: 0;
       padding: 0;
       >li{
+        list-style: none;
         .pt(8);
         .pb(8);
         border-bottom: 1px solid @borderBottomColor;
         &:last-child{
           .pb(0);
         }
-        >i{
+        >i.fa-angle-right{
           top: 50%;
-          .mt(-6);
+          .fs(24);
+          .mt(-12);
           .mr(10);
           .right(0);
-          color: #333333;
+          color: #8a8a8a;
         }
         >span{
           .ml(48);
-          &:last-child{
+          &:first-child {
+            .mr(10);
+          }
+          &:last-child {
             .ml(75);
           }
         }
@@ -81,6 +87,7 @@
       border-bottom: 1px solid @borderBottomColor;
       .pb(8);
       >li{
+        list-style: none;
         >span{
           .fs(14);
           color: @dark;
@@ -93,13 +100,15 @@
     .pr(10);
   }
   input[type="text"]{
-    width: 100%;
+    width: calc(100% - 0.18rem * 2);
     .pt(10);
     .pb(10);
+    .fs(14);
     outline: 0;
-    border-width: 0;
-    border-bottom-width: 1px;
-    border-color: @borderBottomColor;
+    border: 0;
+    border-radius: 0;
+    border-bottom: 1px solid @borderBottomColor;
+
   }
   input[type="checkbox"]+span{
     display: inline;
@@ -125,18 +134,22 @@
     .fs(12);
     >div{
       flex: 1;
-      .pt(15);
+      background-color: #f5f5f5;
+      .pt(14);
       .pr(10);
-      .pb(15);
+      .pb(14);
       .pl(10);
+      .fs(14);
       span{
         .fs(18);
       }
     }
     button{
       .w(170);
+      .fs(16);
       color: @white;
-      background-color: #494e5d;
+      border: 0;
+      background-color: #474aa7;
     }
   }
 }

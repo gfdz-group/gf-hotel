@@ -2,13 +2,14 @@
   height: 100vh;
   background-color: #f5f5f5;
   .level{
-    .h(270);
+    .h(220);
     background: url('/assets/profile01.jpg') no-repeat 50% 50%;
     background-size: cover;
-    -webkit-filter: blur(1px);
-    -moz-filter: blur(1px);
-    -ms-filter: blur(1px);
-    filter: blur(1px);
+    .shade {
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.45);
+    }
     h1{
       .fs(19);
     }
@@ -60,10 +61,7 @@
     color: #3b3b3b;
     list-style: none;
     background-color: @white;
-    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    -ms-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #c4c4c4;
     li{
       .pt(10);
       .pb(10);
@@ -87,15 +85,15 @@
     background-color: @white;
   }
   .pro-head {
-    width: 2.3rem;
-    height: 2.3rem;
+    width: 2rem;
+    height: 2rem;
     border: 2px solid @white;
     border-radius: 50%;
     position: absolute;
-    top: 1.55rem;
+    top: 1rem;
     left: 45%;
     .ml(-20);
-    background: url('/assets/profile02.jpg') no-repeat center center;
+    background: url('/assets/head.jpg') no-repeat center center;
     background-size: cover;
   }
   .pro-info {
@@ -105,14 +103,16 @@
     justify-content: space-between;
     flex-wrap: wrap;
     position: absolute;
-    top: 5rem;
+    top: 3.8rem;
     .info-row{
       width: 100%;
       line-height: .8rem;
-      .pl(25);
+      .pl(10);
+      .pr(10);
       div {
         &:extend(.fl);
-        width: 33%;
+        width: calc((100% - 0.3rem * 2) / 3);
+        text-align: center;
         color: @white;
       }
       &:last-child{
@@ -120,5 +120,9 @@
         font-weight: 500;
       }
     }
+  }
+  .fa-angle-right {
+    .fs(18);
+    color: #8a8a8a;
   }
 }

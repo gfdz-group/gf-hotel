@@ -16,20 +16,22 @@ class RoomItem extends Component {
 
     return (
       <li className="room pos-r" key={id} style={{backgroundImage: `url(${img})`}}>
-        <Link to={`/room/${id}`}>
-        <img src={img} alt="" />
-        <div className="desc pos-a">
-          {name}
-          <div className="labels">
-            {labels.map((label, idx) => {
-            return (
-              <span className="di-b" key={idx}>{label}</span>
-            );
-            })}
+          <div class="shade">
+            <Link to={`/room/${id}`}>
+            <img src={img} alt="" />
+            <div className="desc pos-a">
+              {name}
+              <div className="labels">
+                {labels.map((label, idx) => {
+                return (
+                  <span className="di-b" key={idx}>{label}</span>
+                );
+                })}
+              </div>
+            </div>
+            <a className="white orange-bg pos-a">¥&nbsp;{price} <span>起 每晚</span></a>
+            </Link>
           </div>
-        </div>
-        <button className="white orange-bg pos-a">¥{price} 起 每晚</button>
-        </Link>
       </li>
     );
   }

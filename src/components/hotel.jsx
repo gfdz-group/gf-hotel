@@ -129,7 +129,7 @@ class Hotel extends Component {
           </div>
           <FooterBtn
             color="#FFF"
-            bgColor="#3b4152"
+            bgColor="#474aa7"
             text="我要订房"
             to={`/calendar/${this.state.hotel.id}`}
           />
