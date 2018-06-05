@@ -15,20 +15,20 @@ class RoomItem extends Component {
     labels = labels.split(',');
 
     return (
-      <li className="room" key={id}>
+      <li className="room pos-r" key={id} style={{backgroundImage: `url(${img})`}}>
         <Link to={`/room/${id}`}>
         <img src={img} alt="" />
-        <div className="desc">
+        <div className="desc pos-a">
           {name}
           <div className="labels">
             {labels.map((label, idx) => {
             return (
-              <span key={idx}>{label}</span>
+              <span className="di-b" key={idx}>{label}</span>
             );
             })}
           </div>
         </div>
-        <button className="white orange-bg">¥{price} 起 每晚</button>
+        <button className="white orange-bg pos-a">¥{price} 起 每晚</button>
         </Link>
       </li>
     );
