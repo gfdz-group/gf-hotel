@@ -197,7 +197,7 @@ class Calendar extends Component {
 
         <FooterBtn 
            color="#FFF"
-           bgColor="#494e5d"
+           bgColor="#3b4152"
            text="查找房间"
            to={`/rooms/${this.state.hotelId}`}
         />

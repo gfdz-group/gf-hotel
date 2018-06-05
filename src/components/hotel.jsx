@@ -58,7 +58,7 @@ class Hotel extends Component {
             <h1>关于酒店</h1>
             <pre>{hotel.describe}</pre>
             <div className="link">
-              <i className="fa fa-chevron-down"></i>
+              <i className="fa fa-angle-down"></i>
             </div>
           </div>
           {/** 设施服务 */}
@@ -72,7 +72,7 @@ class Hotel extends Component {
                     return (
                       <div className="block pos-r" key={idx}>
                         <img src={im.firstImagePath} alt="" />
-                        <div className="title pos-a ta-c">{im.name}({im.number})</div>
+                        <div className="title pos-a ta-c">{im.name}（{im.number}）</div>
                       </div>
                     );
                   })}
@@ -129,7 +129,7 @@ class Hotel extends Component {
           </div>
           <FooterBtn
             color="#FFF"
-            bgColor="#494e5d"
+            bgColor="#3b4152"
             text="我要订房"
             to={`/calendar/${this.state.hotel.id}`}
           />

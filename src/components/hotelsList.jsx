@@ -45,7 +45,7 @@ class HotelsList extends Component {
           <Header title="品官房" />
           <div className="container">
             {/** banner image */}
-            <Banner image="/assets/u65.jpg" />
+            <Banner image="/assets/banner.jpg" />
             {/** list */}
             <div className="gallery">
               {this.state.hotels.map((hotel, idx) => {

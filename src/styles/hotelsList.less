@@ -1,5 +1,8 @@
 .hotelsList{
-  background: #f5f5f5;
+  /*background: #f5f5f5;*/
+  .pt(15);
+  .pl(10);
+  .pr(10);
   .container{
     display: flex;
     flex-direction: column;
@@ -7,12 +10,12 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      .pt(20);
+      .pt(12);
       .block{/** gallery item */
-        .h(90);
-        .w(100);
-        .ml(9);
-        .mr(9);
+        .h(83.5);
+        .w(108);
+        .ml(5);
+        .mr(5);
         .mb(30);
         img{
           width: 100%;
@@ -20,19 +23,21 @@
         }
         >a{
           display: block;
-          border-radius: 8%;
-          .w(100);
+          border-radius: 6%;
+          /*.w(100);*/
           .h(100);
           overflow: hidden;
         }
       }
       .title{
         .bottom(0);
+        .pt(5);
+        .pb(5);
         opacity: 0.7;
         width: 100%;
         background-color: @black;
         color: @white;
-        .fs(10);
+        .fs(12);
         white-space: nowrap;
       }
     }
