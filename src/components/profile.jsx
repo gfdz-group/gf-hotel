@@ -56,7 +56,7 @@ class Profile extends Component {
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
 						<li className="pos-r">
-                            <i className="fa fa-user"></i>
+                            <i className="fa fa-user-circle"></i>
 							我的账户
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
