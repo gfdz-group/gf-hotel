@@ -16,7 +16,7 @@ class RoomItem extends Component {
 
     return (
       <li className="room pos-r" key={id} style={{backgroundImage: `url(${img})`}}>
-          <div class="shade">
+          <div className="shade">
             <Link to={`/room/${id}`}>
             <img src={img} alt="" />
             <div className="desc pos-a">

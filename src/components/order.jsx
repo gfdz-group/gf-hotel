@@ -179,7 +179,7 @@ class Order extends Component {
             </div>
             <button onClick={() => {
               this.postData();
-            }}>提交订房</button>
+            }}>立即支付</button>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 .roomsList{
-  background: @lightGrey;
+  /*background: @lightGrey;*/
   .pb(60);
   .search{
     display: flex;
@@ -40,6 +40,7 @@
       background-size: cover;
       background-position: center;
       border-radius: 4px;
+      filter: brightness(1.3);
       a{
         display: block;
         text-decoration: none;
@@ -55,7 +56,7 @@
         width: 100%;
         height: 100%;
         border-radius: inherit;
-        background-color: rgba(0,0,0,0.3);
+        background-color: rgba(0,0,0,0.4);
         .desc{
           flex: 1;
           .pl(10);
@@ -79,7 +80,7 @@
           }
         }
         a.orange-bg {
-          .w(85);
+          .w(80);
           .h(32);
           .lh(32);
           .pl(15);

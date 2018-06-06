@@ -14,7 +14,7 @@ class Profile extends Component {
 			<div className="profile">
 				{/** 用户登记 */}
 				<div className="level">
-					<div class="shade"></div>
+					<div className="shade"></div>
 				</div>
                 <div className="pro-head"> </div>
 				<div className="pro-info">
@@ -33,10 +33,12 @@ class Profile extends Component {
 				<div>
 					<ul>
 						<li className="pos-r">
+                            <i className="fa fa-pie-chart"></i>
 							我的交易记录
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
 						<li className="pos-r">
+                            <i className="fa fa-users"></i>
 							兑换成员名单
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
@@ -44,14 +46,17 @@ class Profile extends Component {
 
 					<ul>
 						<li className="pos-r">
+                            <i className="fa fa-file-text"></i>
 							我的资料
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
 						<li className="pos-r">
+                            <i className="fa fa-gift"></i>
 							会员权益
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
 						<li className="pos-r">
+                            <i className="fa fa-user"></i>
 							我的账户
 							<i className="pos-a fa fa-angle-right"></i>
 						</li>
