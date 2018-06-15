@@ -1,63 +1,76 @@
 .cal{
-  .pt(15);
-  .pl(5);
-  .pr(5);
-  .fs(13);
-  padding-bottom: 100%;
+  .pt(5);
+  .pl(10);
+  .pr(10);
+  color: @white;
+    /*padding-bottom: 100%;*/
  /* background: @lightGrey;*/
-
+  height: calc( 100vh - 0.13333333rem );
   background: url('/assets/cal-bg.png') no-repeat center;
   background-size: cover;
+  background-attachment: fixed;
+  filter: brightness(1.2);
   .select-wrapper{
     display: flex;
-    background: @white;
+    background: rgba(255,255,255,0.7);
+    border-radius: 2px;
     align-items: center;
+    .mt(10);
     select{
       flex: 1;
-      .pt(16);
-      .pb(16);
+      .pt(12);
+      .pb(12);
       .pl(7);
       .fs(15);
       width: 100%;
-      border-width: 0;
-      background: @white;
+      border: 0;
+      border-radius: 2px;
+      /*background: rgba(255,255,255,0.8);*/
     }
     i{
       .pr(8);
       .fs(19);
-      color: #a77c3a;
+      color: #c5463f;
     }
   }
   .date-picker{
-    .mt(15);
+    .mt(10);
     display: flex;
     align-items: center;
-    background: @white;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
     >div{
       .pt(8);
       .pb(8);
+      >label {
+        .fs(14);
+        color: #999;
+      }
     }
     >*{
       flex: 1;
     }
     >.fa{
       .fs(20);
+      display: block;
       color: @darkGrey;
     }
     .date-picker-trigger{
       .fs(16);
-      font-weight: 500;
+      color: @white;
+      font-weight: 600;
       outline: 0;
       border-width: 0;
-      background: @white;
+      background: rgba(255,255,255,0);
       text-align: center;
       width: 100%;
     }
   }
   .divider{
     .fs(15);
-    .pt(8);
-    .pb(8);
+    .pt(5);
+    .pb(5);
+/*    color: @white;*/
   }
   .number-picker{
     .pt(10);
@@ -67,26 +80,35 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: @white;
+    background: rgba(255,255,255,0.3);
+    border-radius: 2px;
     &.mt{
-      .mt(15);
+      .mt(10);
+    }
+    &:first-child{
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    &:last-child{
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
     }
     .picker{
       display: flex;
       align-items: center;
       .fa{
         .fs(25);
-        color: #8c8c8c;
+        /*color: @white;*/
       }
-      label{
-        .fs(15);
+      .lbl-title{
+        .fs(16);
       }
       h1{
         .w(20);
         .pl(30);
         .pr(30);
-        .fs(25);
-        color: rgba(0,0,0,0.87);
+        .fs(26);
+        color: rgba(255,255,255,1);
         font-weight: 500;
         text-align: center;
       }

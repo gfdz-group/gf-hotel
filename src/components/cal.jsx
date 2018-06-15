@@ -72,7 +72,7 @@ class Calendar extends Component {
               );
             })}
           </select>
-          <i className="fa fa-caret-down"></i>
+          <i className="fa fa-map-marker"></i>
         </div>
         {/** 入住时间选择 */}
         <div className="date-picker">
@@ -125,11 +125,11 @@ class Calendar extends Component {
         </div>
         {/** 时间段提示 */}
         <div className="divider ta-c">
-          共{order.daysdiff}晚
+          共&nbsp;{order.daysdiff}&nbsp;晚
         </div>
         {/** 数量选择 */}
         <div className="number-picker">
-          <label>房间数量</label>
+          <label className="lbl-title">房间数量</label>
           <div className="picker">
             <span className="fa fa-minus-circle" onClick={() => {
               const count = order.roomsCount;
@@ -150,50 +150,53 @@ class Calendar extends Component {
             }}></span>
           </div>
         </div>
-        <div className="number-picker mt">
-          <label>成人 (每间)</label>
-          <div className="picker">
-          <span className="fa fa-minus-circle" onClick={() => {
-            const num = order.adultNumber;
-            if(num>1) {
-              this.state.handleChange('order', {
-                ...order,
-                adultNumber: num-1,
-              });
-            }
-          }}></span>
-            <h1>{order.adultNumber}</h1>
-            <span className="fa fa-plus-circle" onClick={() => {
-              const num = order.adultNumber;
-              this.state.handleChange('order', {
-                ...order,
-                adultNumber: num+1,
-              });
-            }}></span>
+          <div>
+              <div className="number-picker mt">
+                  <label className="lbl-title">成人 (每间)</label>
+                  <div className="picker">
+                      <span className="fa fa-minus-circle" onClick={() => {
+                          const num = order.adultNumber;
+                          if(num>1) {
+                              this.state.handleChange('order', {
+                                  ...order,
+                                  adultNumber: num-1,
+                              });
+                          }
+                      }}></span>
+                      <h1>{order.adultNumber}</h1>
+                      <span className="fa fa-plus-circle" onClick={() => {
+                          const num = order.adultNumber;
+                          this.state.handleChange('order', {
+                              ...order,
+                              adultNumber: num+1,
+                          });
+                      }}></span>
+                  </div>
+              </div>
+              <div className="number-picker">
+                  <label className="lbl-title">儿童 (每间)</label>
+                  <div className="picker">
+                      <span className="fa fa-minus-circle" onClick={() => {
+                          const num = order.childrenNumber;
+                          if(num>0) {
+                              this.state.handleChange('order', {
+                                  ...order,
+                                  childrenNumber: num-1,
+                              });
+                          }
+                      }}></span>
+                      <h1>{order.childrenNumber}</h1>
+                      <span className="fa fa-plus-circle" onClick={() => {
+                          const num = order.childrenNumber;
+                          this.state.handleChange('order', {
+                              ...order,
+                              childrenNumber: num+1,
+                          })
+                      }}></span>
+                  </div>
+              </div>
           </div>
-        </div>
-        <div className="number-picker">
-          <label>儿童 (每间)</label>
-          <div className="picker">
-            <span className="fa fa-minus-circle" onClick={() => {
-              const num = order.childrenNumber;
-              if(num>0) {
-                this.state.handleChange('order', {
-                  ...order,
-                  childrenNumber: num-1,
-                });
-              }
-            }}></span>
-            <h1>{order.childrenNumber}</h1>
-            <span className="fa fa-plus-circle" onClick={() => {
-              const num = order.childrenNumber;
-              this.state.handleChange('order', {
-                ...order,
-                childrenNumber: num+1,
-              })
-            }}></span>
-          </div>
-        </div>
+
 
         <FooterBtn 
            color="#FFF"
