@@ -15,7 +15,7 @@ class Calendar extends Component {
       hotels,
       hotelId,
       order: {
-        inDate: order.inDate || (new Date).toISOString().substr(0,10),
+        inDate: order.inDate || (new Date()).toISOString().substr(0,10),
         outDate: order.outDate || curr.toISOString().substr(0, 10),
         daysdiff: order.daysdiff || 1,
         roomsCount: order.roomsCount || 1,
