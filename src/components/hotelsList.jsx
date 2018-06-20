@@ -45,15 +45,21 @@ class HotelsList extends Component {
           <Header title="品官房" />
           <div className="container">
             {/** banner image */}
-            <Banner image="/assets/banner.jpg" />
+           {/* <Banner image="/assets/banner.jpg" />*/}
             {/** list */}
             <div className="gallery">
               {this.state.hotels.map((hotel, idx) => {
                 return (
-                  <div className="block" key={idx}>
+                  <div className="block" key={idx} style={{backgroundImage: `url(${hotel.faceImagePath})`}}>
                     <Link className="pos-r" to={`/hotel/${hotel.id}`}>
-                      <img className="pos-a" src={hotel.faceImagePath} alt="" />
-                      <div className="title pos-a ta-c">{hotel.hotelName}</div>
+                      {/*<img className="pos-a" src={hotel.faceImagePath} alt="" />*/}
+                      <div className="title pos-a ta-c">
+                          <div>{hotel.hotelName}</div>
+                          <div className="subtitle">
+                              <i className="fa fa-map-marker"></i>
+                              {hotel.address}
+                          </div>
+                      </div>
                     </Link>
                   </div>
                 );
