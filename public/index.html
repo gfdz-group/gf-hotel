@@ -21,6 +21,24 @@
     -->
     <title>官房大酒店</title>
     <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/iconfont.css" />
+    <style>
+      .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+        background-color: #f0f8ff !important;
+        color: #4a90e2;
+      }
+      .Selectable .DayPicker-Day {
+        border-radius: 0 !important;
+      }
+      .Selectable .DayPicker-Day--start {
+        border-top-left-radius: 50% !important;
+        border-bottom-left-radius: 50% !important;
+      }
+      .Selectable .DayPicker-Day--end {
+        border-top-right-radius: 50% !important;
+        border-bottom-right-radius: 50% !important;
+      }
+    </style>
   </head>
   <body>
     <noscript>
@@ -40,20 +58,20 @@
     <script>
       document.getElementsByTagName('html')[0].style.fontSize=  window.screen.width / 10 + 'px';
       /** disalbe safari */
-      window.onload=function () {  
-        document.addEventListener('touchstart',function (event) {  
-            if(event.touches.length>1){  
-                event.preventDefault();  
-            }  
-        })  
-        var lastTouchEnd=0;  
-        document.addEventListener('touchend',function (event) {  
-            var now=(new Date()).getTime();  
-            if(now-lastTouchEnd<=300){  
-                event.preventDefault();  
-            }  
-            lastTouchEnd=now;  
-        },false)  
+      window.onload=function () {
+        document.addEventListener('touchstart',function (event) {
+            if(event.touches.length>1){
+                event.preventDefault();
+            }
+        })
+        var lastTouchEnd=0;
+        document.addEventListener('touchend',function (event) {
+            var now=(new Date()).getTime();
+            if(now-lastTouchEnd<=300){
+                event.preventDefault();
+            }
+            lastTouchEnd=now;
+        },false)
 }
     </script>
   </body>

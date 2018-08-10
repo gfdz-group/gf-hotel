@@ -12,7 +12,8 @@ import {
   Order,
   Profile,
   RoomsList,
-  RoomDetail
+  RoomDetail,
+  DatePicker,
 } from './components';
 import './styles/index.less';
 
@@ -78,6 +79,7 @@ const App = () => {
       <Route exact path="/" component={requireAuth(HotelsList)} />
       <Route exact path="/hotel/:hotelId" component={Hotel} />
       <Route path="/calendar/:hotelId?" component={Calendar} />
+      <Route path="/date-picker" component={DatePicker} />
       <Route exact path="/rooms/:hotelId" component={RoomsList} />
       <Route exact path="/room/:roomId" component={RoomDetail} />
       {/**<Route exact path="/layouts/:hotel_id" component={HouseLayout} />*/}

@@ -11,19 +11,10 @@ class Order extends Component {
       order: {},
       hotelName: null,
       roomName: null,
-
-      firstName: '', 
-      lastName: '',
-      //linkMan: 'Yang Ke',
+      username: null,
       phone: '',
       productId: props.match.params.roomId,
       price: 0,
-      //inDate: '2018-05-01',
-      //outDate: '2018-05-03',
-      //days: 2,
-      //adultNumber: 2,
-      //childrenNumber: 1,
-      isReceiveSMS: 1,
       openId: localStorage.getItem('openId'),
       handleChange: this.handleChange.bind(this),
     };
@@ -36,13 +27,11 @@ class Order extends Component {
     if(localStorage.getItem('order')) {
       const order = JSON.parse(localStorage.getItem('order'));
       this.setState({order});
-      //console.log(order);
     }
   }
 
   componentDidMount() {
     const { roomId } = this.props.match.params;
-    //console.log(roomId);
     if(roomId) {
       fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}`)
         .then(res => {
@@ -63,14 +52,14 @@ class Order extends Component {
   }
 
   postData() {
-    this.callApi()
-      .then(res => {
-        if(res.feedbackcode===1) {
-          const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
-          //console.log('url:', url);
-          window.location = url;
-        }
-      });
+    return false;
+    // this.callApi()
+    //   .then(res => {
+    //     if(res.feedbackcode===1) {
+    //       const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
+    //       window.location = url;
+    //     }
+    //   });
   }
 
   async callApi() {
@@ -78,16 +67,17 @@ class Order extends Component {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify({
-        linkMan: `${this.state.firstName} ${this.state.lastName}`,
+        linkMan: `${this.state.username}}`,
         phone: this.state.phone,
         productId: this.state.productId,
-        price: this.state.price * this.state.order.roomsCount,
+        price: (this.state.price * this.state.order.roomsCount).toFixed(2),
         inDate: this.state.order.inDate,
         outDate: this.state.order.outDate,
-        days: this.state.order.daysdiff,
+        days: this.state.order.daysDiff,
+        roomsCount: this.state.order.roomsCount,
         adultNumber: this.state.order.adultNumber,
         childrenNumber: this.state.order.childrenNumber,
-        isReceiveSMS: this.state.isReceiveSMS,
+        isReceiveSMS: 1,
       }),
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -96,85 +86,124 @@ class Order extends Component {
     const body = await res.json();
     return body;
   }
-  
+
   render() {
-    const { firstName, lastName, phone, hotelName, roomName, order, price } = this.state;
+    const { username, phone, hotelName, roomName, order, price } = this.state;
 
     return (
       (isEmpty(hotelName) || isEmpty(roomName)) ? <Loading /> :
       <div className="order">
-        <Header title="预定" />
         <div className="container">
           {/** 酒店信息 */}
-          <div className="block">
-            <h2 className="orange">{hotelName}</h2>
+          <div className="hotel-info">
+            <h2>{hotelName}</h2>
             <ul className="room-info">
-              <li><span>{roomName}</span></li>
-              <li><span>入住/退房日期：{order.inDate} / {order.outDate}&nbsp;&nbsp;共{order.daysdiff}晚</span></li>
-              <li><span>成人（每间）: {order.adultNumber}</span></li>
-              <li><span>12岁以下儿童（每间）: {order.childrenNumber}</span></li>
+              <li>
+                <span>入住 {order.inDate}</span>
+                <span>离店 {order.outDate}</span>
+                <span>共 {order.daysDiff} 晚</span>
+              </li>
+              <li>
+                <span>{roomName}</span>
+                <span>双早</span>
+                <span>免费取消</span>
+              </li>
             </ul>
-            <div className="extra">
-              <span className="di">房间数量: {order.roomsCount}</span>
-              <span className="di fr light-blue">编辑</span>
-            </div>
           </div>
           {/** 联络信息 */}
-          <div className="block">
-            <h2>联络信息</h2>
-            <input className="db" type="text" placeholder="姓， 请用中文、英文或拼音填写" 
-              value={firstName}
-              onChange={(evt) => {
-                const value = evt.target.value;
-                this.state.handleChange('firstName', value);
-              }} />
-            <input className="db" type="text" placeholder="名， 请用中文、英文或拼音填写" 
-              value={lastName}
-              onChange={(evt) => {
-                const value = evt.target.value;
-                this.state.handleChange('lastName', value);
-              }}
-            />
-            <input className="db" type="text" placeholder="手机号码"
-              value={phone}
-              onChange={(evt) => {
-                const value=  evt.target.value;
-                this.state.handleChange('phone', value);
-              }}
-            />
-            <div className="extra">
-              <span className="di">  是否接收确认短信</span>
-              <div className="di fr">
-                <Switch
-                  height={23.8}
-                  width={42}
-                  left={3}
-                  bottom={3}
-                  transColor={'#36ab60'}
+          <div className="order-info">
+
+            <div className="form-group-wrapper">
+              <div className="form-group" style={{justifyContent: 'space-between'}}>
+                <label htmlFor="">房间数</label>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                  <span className="iconfont icon-minus" onClick={() => {
+                    if(order.roomsCount>1)
+                      this.setState({
+                        order: Object.assign(order, { roomsCount: order.roomsCount-1 })
+                      })
+                  }} />
+                  <span className="roomsCount">{order.roomsCount}</span>
+                  <span className="iconfont icon-plus" onClick={() => {
+                    this.setState({
+                      order: Object.assign(order, { roomsCount: order.roomsCount+1 })
+                    })
+                  }} />
+                </div>
+              </div>
+            </div>
+
+            <div className="form-group-wrapper">
+              <div className="form-group">
+                <label htmlFor="">入住人</label>
+                <input type="text" placeholder="请输入入住人姓名"
+                  value={username}
+                  onChange={(evt) => {
+                    const value = evt.target.value;
+                    this.state.handleChange('username', value);
+                  }}
                 />
               </div>
             </div>
+
+            <div className="form-group-wrapper">
+              <div className="form-group">
+                <label htmlFor="">手机号</label>
+                <input type="text" placeholder="请输入入住人手机"
+                  value={phone}
+                  onChange={(evt) => {
+                    const value=  evt.target.value;
+                    this.state.handleChange('phone', value);
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="form-group-wrapper">
+              <div className="form-group" style={{ justifyContent: 'space-between' }}>
+                <div className="coupon">
+                  <h2>优惠券</h2>
+                  <span>选择优惠券</span>
+                </div>
+                <div className="coupon">
+                  <h2>积分抵用</h2>
+                  <span>可用 0 积分</span>
+                  <span>抵用¥ 0</span>
+                </div>
+                <div>
+                  <Switch
+                    height={23.8}
+                    width={42}
+                    left={3}
+                    bottom={3}
+                    transColor={'#2bb078'}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="form-group-wrapper">
+              <div className="form-group">
+                <label htmlFor="">备注</label>
+                <input type="text" placeholder="无" />
+              </div>
+            </div>
           </div>
-          {/** 附加信息 */}
-          <div className="block">
-            <ul className="list">
-              <li className="pos-r">
-                抵达酒店时间
-                <span className="di fr">选择时间</span>
-              </li>
-              <li className="pos-r">
-                  备选要求<span>无</span>
-                  <i className="pos-a fa fa-angle-right"></i>
-              </li>
-              <li className="pos-r no-border">
-                发票<span>请到前台索取发票</span>
-              </li>
-            </ul>            
+
+          {/** 微信支付 */}
+          <h2 className="wechat-pay-text">支付方式</h2>
+          <div className="wechat-pay-label pos-r">
+            <i class="fa fa-check-circle pos-a" aria-hidden="true"></i>
+            <div className="wechat-pay-label-inner pos-a">
+              <img src="/assets/wechat.png" />
+              <span>微信支付</span>
+            </div>
           </div>
+
           {/** 支付结算 */}
           <div className="footer no-border">
             <div>
-                微信会员价 <span className="red">￥{price * order.roomsCount}</span>
+                微信会员价 <span className="price">￥{(price * order.roomsCount).toFixed(2)}</span>
               {/*<span className="db">已包含双早费及服务费</span>*/}
             </div>
             <button onClick={() => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from './common/Loading';
-import { isEmpty } from '../utils';
+import utils from '../utils';
 import Header from './header';
 import Banner from './common/bannerImage';
 import FooterBtn from './common/footerBtn';
@@ -40,46 +40,40 @@ class Hotel extends Component {
   render() {
     const { hotel } = this.state;
     return (
-      isEmpty(hotel) ? <Loading /> : 
+      utils.isEmpty(hotel) ? <Loading /> :
       <div className="hotel">
-        <Header title="丽江官房大酒店"></Header>
         <div className="container">
           {/** banner */}
-          <div className="block no-p">
-            <Banner image={hotel.faceImagePath} />
-            {/** 酒店位置 */}
-            <div className="text pos-r">
-              <span className="addr">{hotel.hotelAddress}</span>
-              <i className="fa fa-map-marker pos-a"></i>
+          <div className="block map-banner">
+            <div className="map">
+              <div className="cover pos-r">
+                {/* text */}
+                <div className="text pos-a">
+                  <h1>{hotel.hotelName}</h1>
+                  <h2>
+                    <i className="fa fa-map-marker"></i>
+                    {hotel.hotelAddress}
+                  </h2>
+                </div>
+                {/* navi icon */}
+                <div className="navi pos-a">
+                  <img className="icon"  src="/assets/navi.png" alt="" />
+                  <span>导航</span>
+                </div>
+              </div>
+            </div>
+            <div className="phone">
+              酒店电话: 0888-5188888
             </div>
           </div>
           {/** 酒店介绍 */}
           <div className="block">
-            <h1>关于酒店</h1>
+            <h1>关于酒店:</h1>
             <pre>{hotel.describe}</pre>
-            <div className="link">
-              <i className="fa fa-angle-down"></i>
-            </div>
           </div>
           {/** 设施服务 */}
           <div className="block">
-            <h1>设施服务</h1>
-            {/** 相册 */}
-            {hotel.serve.serveImages.length?(
-              <div className="gallery">
-                <div style={{width: 650}}>
-                  {hotel.serve.serveImages.map((im, idx) => {
-                    return (
-                      <div className="block pos-r" key={idx}>
-                        <img src={im.firstImagePath} alt="" />
-                        <div className="title pos-a ta-c">{im.name}（{im.number}）</div>
-                      </div>
-                    );
-                  })}
-                  <div className="clear"></div>
-                </div>
-              </div>
-            ):null}
+            <h1>设施服务:</h1>
             <ul className="list">
               {hotel.serve.serveType.map((s, idx) => {
                 return (
@@ -102,12 +96,10 @@ class Hotel extends Component {
           </div>
           {/** 酒店政策 */}
           <div className="block">
-            <h1>酒店政策</h1>
+            <h1>酒店政策:</h1>
             <ul className="list">
               <li className="list-item">
                 <h1>
-                  {/*<i className="fa fa-clock-o"></i>*/}
-                  入离时间
                   <p className="no-m">
                     入店时间：{hotel.policy.ioTime.inTime}以后
                     离店时间: 次日{hotel.policy.ioTime.outTime}以前
@@ -129,7 +121,7 @@ class Hotel extends Component {
           </div>
           <FooterBtn
             color="#FFF"
-            bgColor="#4b2b95"
+            bgColor="#2bb078"
             text="我要订房"
             to={`/calendar/${this.state.hotel.id}`}
           />

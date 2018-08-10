@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import RoomItem from './room/roomItem';
 import Loading from './common/Loading';
-import Footer from './footer';
+import BannerImage from './common/bannerImage'
+import HotelInfoBanner from './hotel/InfoBanner'
+import HotelCommentBanner from './hotel/Comment'
 
 class RoomsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hotel: null,
       hotelId: this.props.match.params.hotelId,
       rooms: null,
     };
@@ -17,15 +20,18 @@ class RoomsList extends Component {
   }
 
   componentDidMount() {
-    this.callApi()
-      .then(res => {
-        this.setState({rooms: res.roomList});
-      })
-      .catch(err => { console.error(err); });
+    // hotel
+    this.callApi(`/api/hotel/hotelManager/getHotelInfo.do?id=${this.state.hotelId}`)
+      .then(res => this.setState({hotel: res}))
+      .catch(err => console.error(err));
+    // room list
+    this.callApi(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}`)
+      .then(res => this.setState({rooms: res.roomList}))
+      .catch(err => console.error(err));
   }
 
-  async callApi() {
-    const res = await fetch(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}`, {
+  async callApi(url) {
+    const res = await fetch(url, {
       method: 'GET',
       credentials: 'same-origin',
     });
@@ -35,30 +41,30 @@ class RoomsList extends Component {
   }
 
   render() {
+    console.log( this.state.rooms )
     return (
-      this.state.rooms? (
+      this.state.rooms && this.state.hotel ? (
       <div className="roomsList">
-        <div className="search">
-          <span className="fa fa-search">
-            <input type="text" placeholder="搜索房间" />
-          </span>
+        <div>
+          <BannerImage image={this.state.hotel.faceImagePath}/>
+          <HotelInfoBanner hotel={this.state.hotel} />
+          <HotelCommentBanner />
         </div>
-        {/** 房间列表 */}
-        <ul>
-          {this.state.rooms.map((r, idx) => {
-            return (
+        <div className="list">
+          <h1 className="ta-c">预定酒店</h1>
+          <ul>
+            {this.state.rooms.map((r, idx) =>
               <RoomItem
                 key={idx}
                 id={r.id}
                 img={r.imagePath}
                 name={r.name}
+                originPrice={r.originPrice}
                 price={r.price}
                 labels="无早,免费取消"
-              />
-            );
-          })}
-        </ul>
-        <Footer />
+              />)}
+          </ul>
+        </div>
       </div>) : <Loading />
     );
   }

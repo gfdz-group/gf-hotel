@@ -1,119 +1,94 @@
 .order {
   height:cacle(100vh - 0.4rem);
   color: #333;
-  background: @lightGrey;
-  .pt(8);
   ul{
     margin: 0;
     padding: 0;
-    .fs(14);
-    >li {
-      line-height: 0.65rem;
-    }
+    list-style: none;
   }
   .container{
     .mb(75);
-    background-color: @lightGrey;
-    .block{
-      background-color: @white;
-      border-bottom: 1px solid #c4c4c4;
-      /*-webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-      -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-      -ms-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);*/
-      .mb(10);
-      .pt(12);
-      .pb(12);
-      .pl(10);
-      /*.pr(10);*/
-      h2{
-        margin: 0;
-        .fs(15);
-        .mb(5);
-      }
-      h2+span{
-        display: block;
-        .fs(15);
-        .mb(5);
-      }
-      .list-wrapper{
-        .mt(10);
-        .pt(5);
-        border-top: 1px solid @borderBottomColor;
-        span{
-          color: @darkGrey;
-        }
-      }
-      button{
-        .w(150);
-        .mt(10);
-        .pt(2);
-        .pb(2);
-        outline: 0;
-        background-color: #999999;
-      }
-    }
-    ul.list{
-      margin: 0;
-      padding: 0;
-      >li{
-        list-style: none;
-        .pt(8);
-        .pb(8);
-        border-bottom: 1px solid @borderBottomColor;
-        &:last-child{
-          .pb(0);
-        }
-        >i.fa-angle-right{
-          top: 50%;
-          .fs(24);
-          .mt(-12);
-          .mr(10);
-          .right(0);
-          color: #8a8a8a;
-        }
-        >span{
-          .ml(48);
-          &:first-child {
-            .mr(10);
-          }
-          &:last-child {
-            .ml(75);
-          }
-        }
-      }
-    }
-    ul.room-info{
-      border-bottom: 1px solid @borderBottomColor;
-      .pb(8);
-      >li{
-        list-style: none;
-        >span{
-          .fs(14);
-          color: @dark;
-        }
-      }
-    }
-  }
-  .extra{
-    .pt(9);
-    .pr(10);
-  }
-  input[type="text"]{
-    width: calc(100% - 0.18rem * 2);
-    .pt(10);
-    .pb(10);
-    .fs(14);
-    outline: 0;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid @borderBottomColor;
 
+    .hotel-info{
+      .pt(17);
+      .pb(10);
+      .pl(8);
+      .pr(8);
+      >h2{
+        .pl(30);
+        .fs(15);
+        .lh(15);
+        font-weight: 400;
+        border-left: 1px solid #d58e44;
+      }
+      >ul.room-info{
+        .pl(30);
+        .pt(17);
+        .fs(13);
+        >li{
+          .mb(13);
+          >span{
+            .mr(15);
+          }
+        }
+      }
+    }
+
+    .order-info{
+      .form-group-wrapper{
+        .pl(15);
+        .pr(15);
+        .fs(15);
+        color: #6f6f6f;
+        background: white;
+        .form-group{
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid @borderBottomColor;
+          >label{
+            display: inline-block;
+            .min-w(40);
+            .mr(20);
+            .pt(15);
+            .pb(15);
+          }
+          >input[type="text"]{
+            outline: 0;
+            border: 0;
+            border-radius: 0;
+            .fs(15);
+          }
+          .coupon{
+            .mt(25);
+            .mb(25);
+            display: flex;
+            flex-direction: column;
+            color: #666;
+            .fs(13);
+            >h2{
+              .mb(5);
+              color: #d58e44;
+              .fs(18);
+              font-weight: 400;
+            }
+            >span{
+              .mb(3);
+            }
+          }
+          .iconfont {
+            .fs(22);
+          }
+        }
+      }
+    }
+
+    .roomsCount{
+      display: inline-block;
+      .ml(20);
+      .mr(20);
+    }
   }
-  input[type="checkbox"]+span{
-    display: inline;
-    .fs(10);
-  }
+
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
       color: @placeholderColor;
       opacity: 1; /* Firefox */
@@ -127,11 +102,50 @@
     color: @placeholderColor;
   }
 
+  .wechat-pay-text {
+    .pt(10);
+    .pb(10);
+    .pl(10);
+    .fs(15);
+    color: #a5a5a5;
+    font-weight: 400;
+  }
+
+  .wechat-pay-label {
+    .pl(10);
+    .h(150);
+    >.fa{
+      .top(5);
+      .left(95);
+      .fs(18);
+      color: #d58e44;
+      z-index: 1000;
+    }
+  }
+
+  .wechat-pay-label-inner {
+    .pt(15);
+    .pb(15);
+    .pl(22);
+    .pr(22);
+    background: @white;
+    >img {
+      display: block;
+      margin: 0 auto;
+      .mb(5);
+      .h(20);
+    }
+  }
+
   .footer{
     display: flex;
     background: @white;
     color: #333;
     .fs(12);
+    .price{
+      color: #d58e44;
+      font-weight: bold;
+    }
     >div{
       flex: 1;
       background-color: #f8f8f8;
@@ -149,7 +163,7 @@
       .fs(16);
       color: @white;
       border: 0;
-      background-color: #4b2b95;
+      background-color: #2bb078;
     }
   }
 }
