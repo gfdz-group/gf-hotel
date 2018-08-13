@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../common/Loading';
-import { isEmpty } from '../../utils';
+import utils from '../../utils';
 import Banner from '../common/bannerImage';
 import FooterBtn from '../common/footerBtn';
 
@@ -31,12 +31,12 @@ class roomDetail extends Component {
     if(res.status!==200) { throw new Error(body.message); }
     return body;
   }
-  
+
   render() {
     const { room } = this.state;
     //console.log(room);
     return (
-      isEmpty(room)? <Loading /> :
+      utils.isEmpty(room)? <Loading /> :
       <div className="room-detail">
         <div className="container">
           <Banner image={room.coverImagePath} />

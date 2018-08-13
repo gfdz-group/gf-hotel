@@ -1,18 +1,15 @@
 .cal{
   .pt(5);
-  .pl(10);
-  .pr(10);
   color: @white;
-    /*padding-bottom: 100%;*/
- /* background: @lightGrey;*/
   height: calc( 100vh - 0.13333333rem );
-  background: url('/assets/cal-bg.png') no-repeat center;
   background-size: cover;
   background-attachment: fixed;
   filter: brightness(1.2);
   .select-wrapper{
     display: flex;
-    background: rgba(255,255,255,0.7);
+    .ml(10);
+    .mr(10);
+    background: @white;
     border-radius: 2px;
     align-items: center;
     .mt(10);
@@ -25,26 +22,28 @@
       width: 100%;
       border: 0;
       border-radius: 2px;
-      /*background: rgba(255,255,255,0.8);*/
     }
     i{
       .pr(8);
       .fs(19);
-      color: #c5463f;
+      color: #44ba89;
     }
   }
   .date-picker{
     .mt(10);
+    .mr(10);
+    .ml(10);
     display: flex;
     align-items: center;
-    background: rgba(255,255,255,0.3);
+    color: #969696;
+    background: white;
     border-radius: 2px;
     >div{
       .pt(8);
       .pb(8);
       >label {
-        .fs(14);
-        color: #999;
+        .fs(15);
+        font-weight: bold;
       }
     }
     >*{
@@ -55,15 +54,14 @@
       display: block;
       color: @darkGrey;
     }
-    .date-picker-trigger{
-      .fs(16);
-      color: @white;
-      font-weight: 600;
-      outline: 0;
-      border-width: 0;
-      background: rgba(255,255,255,0);
-      text-align: center;
-      width: 100%;
+    .date{
+      >a{
+        color: inherit;
+        text-decoration: none;
+      }
+      color: #31364b;
+      .fs(20);
+      font-weight: bold;
     }
   }
   .divider{
@@ -74,13 +72,20 @@
   }
   .number-picker{
     .pt(10);
-    .pb(10);
-    .pl(5);
-    .pr(5);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(255,255,255,0.3);
+    .pb(5);
+    .pl(10);
+    .pr(10);
+    .ml(10);
+    .mr(10);
+    .number-picker-inner{
+      .pb(5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e7e7e7;
+    }
+    color: #404040;
+    background: white;
     border-radius: 2px;
     &.mt{
       .mt(10);
@@ -96,20 +101,19 @@
     .picker{
       display: flex;
       align-items: center;
-      .fa{
-        .fs(25);
-        /*color: @white;*/
+      .iconfont{
+        .fs(19);
+        font-weight: 600;
       }
       .lbl-title{
         .fs(16);
       }
       h1{
         .w(20);
-        .pl(30);
-        .pr(30);
-        .fs(26);
-        color: rgba(255,255,255,1);
-        font-weight: 500;
+        .pl(35);
+        .pr(35);
+        .fs(22);
+        font-weight: 400;
         text-align: center;
       }
     }

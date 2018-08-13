@@ -19,7 +19,7 @@ class HotelsList extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(res => { 
+      .then(res => {
         this.setState({hotels: res});
         /** cache hotel lists */
         localStorage.setItem('hotelLists', JSON.stringify(res));
@@ -42,32 +42,26 @@ class HotelsList extends Component {
       this.state.hotels.length?
       (
         <div className="hotelsList">
-          <Header title="品官房" />
           <div className="container">
-            {/** banner image */}
-           {/* <Banner image="/assets/banner.jpg" />*/}
-            {/** list */}
             <div className="gallery">
               {this.state.hotels.map((hotel, idx) => {
                 return (
-                  <div className="block" key={idx} style={{backgroundImage: `url(${hotel.faceImagePath})`}}>
+                  <div className="block" key={hotel.id}>
                     <Link className="pos-r" to={`/hotel/${hotel.id}`}>
-                      {/*<img className="pos-a" src={hotel.faceImagePath} alt="" />*/}
-                      <div className="title pos-a ta-c">
-                          <div>{hotel.hotelName}</div>
-                          <div className="subtitle">
-                              <i className="fa fa-map-marker"></i>
-                              {hotel.address}
-                          </div>
+                      <img src={hotel.faceImagePath} alt="" />
+                      <h1 className="title">{hotel.hotelName}</h1>
+                      <span className="sub-title"> {hotel.address}</span>
+                      <div className="price-tag pos-a">
+                        <span className="currency">¥</span>
+                        <span className="price">369</span>
+                        <span>起</span>
                       </div>
                     </Link>
                   </div>
                 );
               })}
             </div>
-            {/** end of gallery */}
           </div>
-          <Footer />
         </div>
       )
       : <Loading />
