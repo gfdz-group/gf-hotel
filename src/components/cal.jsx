@@ -93,7 +93,7 @@ class Calendar extends Component {
         {/** 入住时间选择 */}
         <div className="date-picker">
           <div className="in ta-c di-b">
-            <label className="db">入住时间</label>
+            <label className="db">入住日期</label>
             <span className="date">
               <Link to="/date-picker">
                 {order.inDateShow}
@@ -193,8 +193,8 @@ class Calendar extends Component {
 
         <FooterBtn
            color="#FFF"
-           bgColor="#2bb078"
-           text="查找房间"
+           bgColor="#20b176"
+           text="查询"
            to={`/rooms/${this.state.hotelId}`}
         />
       </div>

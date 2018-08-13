@@ -68,12 +68,12 @@ class Hotel extends Component {
           </div>
           {/** 酒店介绍 */}
           <div className="block">
-            <h1>关于酒店:</h1>
+            <h1>酒店介绍</h1>
             <pre>{hotel.describe}</pre>
           </div>
           {/** 设施服务 */}
           <div className="block">
-            <h1>设施服务:</h1>
+            <h1>酒店设施</h1>
             <ul className="list">
               {hotel.serve.serveType.map((s, idx) => {
                 return (
@@ -96,7 +96,7 @@ class Hotel extends Component {
           </div>
           {/** 酒店政策 */}
           <div className="block">
-            <h1>酒店政策:</h1>
+            <h1>酒店政策</h1>
             <ul className="list">
               <li className="list-item">
                 <h1>
@@ -121,8 +121,8 @@ class Hotel extends Component {
           </div>
           <FooterBtn
             color="#FFF"
-            bgColor="#2bb078"
-            text="我要订房"
+            bgColor="#20b176"
+            text="立即订房"
             to={`/calendar/${this.state.hotel.id}`}
           />
         </div>

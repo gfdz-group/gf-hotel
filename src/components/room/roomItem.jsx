@@ -58,7 +58,7 @@ class RoomItem extends Component {
             <span>¥ {price%1===0 ? (parseInt(price)).toFixed(2): price} </span>
           </div>
           <div className="order-btn">
-            <Link to={`/order/${id}`}>预定</Link>
+            <Link to={`/order/${id}`}>预订</Link>
           </div>
         </div> }
       </li>

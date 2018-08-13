@@ -1,14 +1,15 @@
 .hotel{
+  background-color: #fff;
   .container{
     .pb(57.5);
     >.block{
-     .pt(5);
+     //.pt(5);
      .pr(10);
      .pb(5);
      .pl(10);
      h1{
-       .mt(5);
-       .mb(5);
+       .mt(10);
+       .mb(10);
        .fs(14);
        font-weight: 400;
        color: #868686;
@@ -21,12 +22,16 @@
       .fs(13);
       .mt(0);
       .mb(0);
+       .pb(10);
       color: @blockTextColor;
+       border-bottom: 1px solid #ececec;
      }
      >ul.list{
         margin: 0;
         padding: 0;
         list-style: none;
+         .pb(10);
+         border-bottom: 1px solid #ececec;
        >li.list-item{
          .mt(10);
         ul{
@@ -76,15 +81,15 @@
    }
   }
   .map-banner{
-    .mt(10);
+    .pt(10);
     .map{
       width: 100%;
       .h(116);
       background-image: url('/assets/map-banner.png');
       background-position: 33% 50%;
       background-size: cover;
-      border-top-left-radius: 5%;
-      border-top-right-radius: 5%;
+      border-top-left-radius: 6%;
+      border-top-right-radius: 6%;
       >.cover{
         width: 100%;
         height: 100%;
@@ -112,7 +117,7 @@
           top: 50%;
           .mt(-18.33);
           .right(18);
-          color: #1e7b54;
+          color: #20b176;
           .icon{
             display: block;
             margin: 0 auto;
