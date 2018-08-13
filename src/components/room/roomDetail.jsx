@@ -34,7 +34,6 @@ class roomDetail extends Component {
 
   render() {
     const { room } = this.state;
-    //console.log(room);
     return (
       utils.isEmpty(room)? <Loading /> :
       <div className="room-detail">

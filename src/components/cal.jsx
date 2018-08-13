@@ -19,8 +19,8 @@ class Calendar extends Component {
       hotels,
       hotelId,
       order: {
-        inDate: curr,
-        outDate: curr.getDate()+1,
+        inDate: new Date(),
+        outDate: curr,
         inDateShow: utils.dateFormat(new Date()),
         outDateShow: utils.dateFormat(curr),
         daysDiff: 1,
@@ -41,13 +41,15 @@ class Calendar extends Component {
     localStorage.setItem('order', JSON.stringify(this.state.order));
   }
 
-  resetLocalStorage() {
-    localStorage.setItem('order', null);
-  }
-
   componentDidMount() {
     document.title = '房间';
-    this.resetLocalStorage();
+    const order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : {};
+    const inDate = order && order.inDate ? order.inDate : null
+    const outDate =  order && order.outDate ? order.outDate : null;
+    if(inDate && outDate) {
+      const daysDiff = utils.daysDiff( inDate,outDate )
+      this.setState({ order: Object.assign(order, { inDate, outDate, daysDiff }) })
+    }
   }
 
   componentWillUnmount() {

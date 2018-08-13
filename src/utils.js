@@ -1,6 +1,6 @@
 export default {
   dateFormat(dateObj) {
-    return dateObj.toISOString().substr(5,5).replace('-','/');
+    return new Date(dateObj).toISOString().substr(5,5).replace('-','/');
   },
 
   daysDiff(date1, date2) {

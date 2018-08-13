@@ -13,8 +13,13 @@ class HotelsList extends Component {
     };
   }
 
+  resetLocalStorage() {
+    localStorage.setItem('order', null);
+  }
+
   componentWillMount() {
     document.title = '官房大酒店';
+    this.resetLocalStorage()
   }
 
   componentDidMount() {

@@ -36,7 +36,6 @@ class Order extends Component {
       fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}`)
         .then(res => {
           res.json().then(body => {
-            //console.log('body:', body);
             this.setState({
               hotelName: body.hotelName,
               roomName: body.roomName,

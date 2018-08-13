@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
+import utils from '../utils'
 import 'react-day-picker/lib/style.css';
 
 const MONTHS = [
@@ -18,9 +19,30 @@ class DatePicker extends Component {
     this.handleDayClick = this.handleDayClick.bind(this);
   }
 
+  updateLocalStorage(order) {
+    localStorage.setItem('order', JSON.stringify(order));
+  }
+
   handleDayClick(day) {
     const range = DateUtils.addDayToRange(day, this.state);
     this.setState(range);
+  }
+
+  componentDidMount() {
+    if(localStorage.getItem('order')) {
+      const order = JSON.parse(localStorage.getItem('order'));
+      this.setState({ from: new Date(order.inDate), to: new Date(order.outDate) });
+    }
+  }
+
+  componentWillUnmount() {
+    const { from, to } = this.state;
+    let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : {};
+    order.inDate = from;
+    order.inDateShow = utils.dateFormat(from);
+    order.outDate = to;
+    order.outDateShow = utils.dateFormat(to);
+    this.updateLocalStorage(order);
   }
 
   render() {

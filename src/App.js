@@ -40,7 +40,6 @@ const requireAuth = (Component) => {
           credentials: 'same-origin',
         });
         const body = await res.json();
-        console.log(res);
         return body;
       }
     }
