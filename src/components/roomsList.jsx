@@ -51,7 +51,7 @@ class RoomsList extends Component {
           <HotelCommentBanner />
         </div>
         <div className="list">
-          <h1 className="ta-c">预定酒店</h1>
+          <h1 className="ta-c">预订酒店</h1>
           <ul>
             {this.state.rooms.map((r, idx) =>
               <RoomItem
