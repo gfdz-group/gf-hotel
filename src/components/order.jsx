@@ -181,7 +181,7 @@ class Order extends Component {
             </div>
 
             <div className="form-group-wrapper">
-              <div className="form-group">
+              <div className="form-group" style={{borderWidth: 0}}>
                 <label htmlFor="">备注</label>
                 <input type="text" placeholder="无" />
               </div>
