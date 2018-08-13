@@ -28,7 +28,7 @@
           }
         }
         .mt(10);
-        .fs(10);
+        .fs(12);
       }
     }
   }
@@ -112,9 +112,9 @@
     >li{
       .mb(20);
       > div.shade-wrapper{
-        .h(115);
+        .h(120);
         background-size: cover;
-        background-position: center;
+        background-position: center center;
         border-radius: 6px;
       }
       > div.toggle-bar{
@@ -178,6 +178,18 @@
             color: white;
           }
         }
+        &:before{
+          content: '';
+          width: 0;
+          height: 0;
+          display: block;
+          border-width: 10px;
+          border-style: solid;
+          border-color: transparent transparent #f3f3f3 transparent;
+          position: relative;
+          top: -33px;
+          left: 10px;
+        }
       }
       a{
         display: block;
@@ -194,7 +206,7 @@
           flex: 1;
           .pl(10);
           color: #fdfbf8;
-          .fs(14);
+          .fs(15);
           .bottom(8);
           .labels{
             .fs(12);
