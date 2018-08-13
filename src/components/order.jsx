@@ -70,7 +70,7 @@ class Order extends Component {
         linkMan: `${this.state.username}}`,
         phone: this.state.phone,
         productId: this.state.productId,
-        price: (this.state.price * this.state.order.roomsCount).toFixed(2),
+        price: (this.state.price * this.state.order.roomsCount * this.state.order.daysDiff).toFixed(2),
         inDate: this.state.order.inDate,
         outDate: this.state.order.outDate,
         days: this.state.order.daysDiff,
@@ -89,7 +89,6 @@ class Order extends Component {
 
   render() {
     const { username, phone, hotelName, roomName, order, price } = this.state;
-
     return (
       (isEmpty(hotelName) || isEmpty(roomName)) ? <Loading /> :
       <div className="order">
@@ -99,8 +98,8 @@ class Order extends Component {
             <h2>{hotelName}</h2>
             <ul className="room-info">
               <li>
-                <span>入住 {order.inDate}</span>
-                <span>离店 {order.outDate}</span>
+                <span>入住 {order.inDateShow}</span>
+                <span>离店 {order.outDateShow}</span>
                 <span>共 {order.daysDiff} 晚</span>
               </li>
               <li>
@@ -193,9 +192,9 @@ class Order extends Component {
           {/** 微信支付 */}
           <h2 className="wechat-pay-text">支付方式</h2>
           <div className="wechat-pay-label pos-r">
-            <i class="fa fa-check-circle pos-a" aria-hidden="true"></i>
+            <i className="fa fa-check-circle pos-a" aria-hidden="true"></i>
             <div className="wechat-pay-label-inner pos-a">
-              <img src="/assets/wechat.png" />
+              <img src="/assets/wechat.png" alt="" />
               <span>微信支付</span>
             </div>
           </div>
@@ -203,7 +202,7 @@ class Order extends Component {
           {/** 支付结算 */}
           <div className="footer no-border">
             <div>
-                微信会员价 <span className="price">￥{(price * order.roomsCount).toFixed(2)}</span>
+                微信会员价 <span className="price">￥{(price * order.roomsCount * order.daysDiff).toFixed(2)}</span>
               {/*<span className="db">已包含双早费及服务费</span>*/}
             </div>
             <button onClick={() => {

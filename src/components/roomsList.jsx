@@ -41,7 +41,6 @@ class RoomsList extends Component {
   }
 
   render() {
-    console.log( this.state.rooms )
     return (
       this.state.rooms && this.state.hotel ? (
       <div className="roomsList">
