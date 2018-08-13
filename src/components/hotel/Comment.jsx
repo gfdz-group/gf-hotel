@@ -17,11 +17,11 @@ class HotelCommentBanner extends Component {
             <span>4.6分</span>
             <div className="comment">
               <div className="stars">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star"></i>
+                <i className="fa fa-star-half-o"></i>
               </div>
               <span>4条评论</span>
               <i className="fa fa-angle-right"></i>

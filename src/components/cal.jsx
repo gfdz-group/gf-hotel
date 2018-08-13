@@ -19,9 +19,11 @@ class Calendar extends Component {
       hotels,
       hotelId,
       order: {
-        inDate: order && order.inDate || utils.dateFormat(new Date()),
-        outDate: order && order.outDate || utils.dateFormat(curr),
-        daysDiff: order && order.daysDiff || 1,
+        inDate: curr,
+        outDate: curr.getDate()+1,
+        inDateShow: utils.dateFormat(new Date()),
+        outDateShow: utils.dateFormat(curr),
+        daysDiff: 1,
         roomsCount: order && order.roomsCount || 1,
         adultNumber: order && order.adultNumber || 1,
         childrenNumber: order && order.childrenNumber || 0,
@@ -39,9 +41,13 @@ class Calendar extends Component {
     localStorage.setItem('order', JSON.stringify(this.state.order));
   }
 
+  resetLocalStorage() {
+    localStorage.setItem('order', null);
+  }
+
   componentDidMount() {
     document.title = '房间';
-    this.updateLocalStorage();
+    this.resetLocalStorage();
   }
 
   componentWillUnmount() {
@@ -55,10 +61,10 @@ class Calendar extends Component {
 
         <Carousel showArrows={false} showThumbs={false} showStatus={false} autoPlay={true} infiniteLoop={true}>
           <div>
-            <img src="/assets/banner1.png" />
+            <img src="/assets/banner1.png" alt="" />
           </div>
           <div>
-            <img src="/assets/banner2.png" />
+            <img src="/assets/banner2.png" alt=""/>
           </div>
         </Carousel>
 
@@ -88,7 +94,7 @@ class Calendar extends Component {
             <label className="db">入住日期</label>
             <span className="date">
               <Link to="/date-picker">
-                {order.inDate}
+                {order.inDateShow}
               </Link>
             </span>
           </div>
@@ -102,7 +108,7 @@ class Calendar extends Component {
             <label className="db">退房日期</label>
             <span className="date">
               <Link to="/date-picker">
-                {order.outDate}
+                {order.outDateShow}
               </Link>
             </span>
           </div>
