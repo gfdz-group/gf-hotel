@@ -5,7 +5,7 @@ class RoomItem extends Component {
   constructor(props){
     super(props);
     this.state = {
-      expanded: false,
+      expanded: typeof props.expanded === 'boolean' ? props.expanded : false,
     };
   }
   render() {

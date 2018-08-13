@@ -61,6 +61,7 @@ class RoomsList extends Component {
                 originPrice={r.originPrice}
                 price={r.price}
                 labels="无早,免费取消"
+                expanded={idx===0?true:null}
               />)}
           </ul>
         </div>

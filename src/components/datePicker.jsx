@@ -42,6 +42,7 @@ class DatePicker extends Component {
     order.inDateShow = utils.dateFormat(from);
     order.outDate = to;
     order.outDateShow = utils.dateFormat(to);
+    order.daysDiff = utils.daysDiff(from, to)
     this.updateLocalStorage(order);
   }
 

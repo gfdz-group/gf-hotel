@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import utils from '../../utils'
 
 class HotelCommentBanner extends Component {
   constructor() {
     super()
+    const order = localStorage.getItem('order') && JSON.parse(localStorage.getItem('order'));
+    const curr = new Date();
+    curr.setDate(curr.getDate()+1);
     this.state = {
-
+      inDateShow: order && order.inDateShow ? order.inDateShow : utils.dateFormat(new Date()),
+      outDateShow: order && order.outDateShow ? order.outDateShow : utils.dateFormat(curr),
+      daysDiff: order && order.daysDiff ? order.daysDiff : 1,
     }
   }
 
@@ -31,18 +38,20 @@ class HotelCommentBanner extends Component {
           <div className="date-time">
             <div>
               <span>入住</span>
-              <span>07/31</span>
+              <span>{this.state.inDateShow}</span>
             </div>
             <div>
               <span>离店</span>
-              <span>08/01</span>
+              <span>{this.state.outDateShow}</span>
             </div>
           </div>
           {/** days diff */}
-          <div className="days-diff">
-            <span>共 1 晚</span>
-            <i className="fa fa-angle-right"></i>
-          </div>
+          <Link to="/date-picker">
+            <div className="days-diff">
+              <span>共 {this.state.daysDiff} 晚</span>
+              <i className="fa fa-angle-right"></i>
+            </div>
+          </Link>
         </div>
       </div>
     )
