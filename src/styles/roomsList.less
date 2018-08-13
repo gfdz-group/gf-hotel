@@ -163,6 +163,7 @@
         background-color: #f3f3f3;
         border-radius: 5px;
         color: #272727;
+        position: relative;
         .fs(15);
         > .price > span {
           .pl(10);
@@ -180,6 +181,7 @@
           }
         }
         &:before{
+          position: absolute;
           content: '';
           width: 0;
           height: 0;
@@ -187,9 +189,8 @@
           border-width: 10px;
           border-style: solid;
           border-color: transparent transparent #f3f3f3 transparent;
-          position: relative;
-          top: -33px;
-          left: 10px;
+          top: -19px;
+          left: 26px;
         }
       }
       a{
