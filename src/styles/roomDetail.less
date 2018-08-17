@@ -1,68 +1,54 @@
 .room-detail{
-  color: @textColor;
-  .pb(60);
-  .banner{
-    // >img {
-    //   .h(210);
-    // }
-  }
-  h2{
-    .fs(15);
-    margin: 0;
-    .mb(5);
-    &:before {
-      .w(4);
-      .h(20);
-      content: '';
-      background-color: #cf0070;
-      display: inline-block;
-      position: relative;
-      left: 0;
-      top: 0.08rem;
-      .mr(10);
-    }
+  .pb(10);
+  .fs(17);
+  color: #414141;
+  background: #f7f8fc;
+  position: fixed;
+  bottom: 0;
+  .left(10);
+  .right(10);
+  z-index: 1000;
+  transition: 1s linear;
+  .room-preview{
+    .h(200);
+    background-size: cover;
+    background-position: center;
   }
   ul{
     list-style: none;
     margin: 0;
     padding: 0;
   }
+  .content-wrapper{
+    .pl(10);
+    .pr(10);
+  }
   .features{
     .pt(18);
-    .pr(10);
-    .pb(10);
-    border-bottom: 1px solid #ebebeb;
-    background-color: white;
     >ul{
+      >li {
+        .pb(10);
+      }
       list-style: none;
       line-height: 0.65rem;
-      .pl(18);
+      font-weight: 200;
       .fs(14);
-      li:before {
-        content: '';
-        display: inline-block;
-        background-color: #cf0070;
-        border-radius: 50%;
-        vertical-align: middle;
-        .w(5);
-        .h(5);
-        .mr(8);
-      }
     }
   }
   .devices{
     .pt(18);
-    .pr(10);
-    /*.pl(10);*/
     .pb(10);
-    background-color: white;
+    .max-h(220);
+    overflow: hidden;
+    border-bottom: 1px solid #ebebeb;
     >ul{
       display: flex;
       flex-wrap: wrap;
-      .pl(15);
       .lh(32);
       >li{
         width: 33.3%;
+        .pb(5);
+        font-weight: 300;
         >i.fa{
           .mr(5);
           color: #434343;
@@ -73,4 +59,24 @@
       }
     }
   }
+  .p-l{
+    width: 30% !important;
+    .pl(10);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    transform: translate(0, 100%);
+    visibility: visible;
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.slideInUp {
+  animation-name: slideInUp;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
 }

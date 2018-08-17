@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../common/Loading';
 import utils from '../../utils';
-import Banner from '../common/bannerImage';
-import FooterBtn from '../common/footerBtn';
 
 class roomDetail extends Component {
   constructor(props) {
@@ -13,7 +11,7 @@ class roomDetail extends Component {
   }
 
   componentDidMount() {
-    const { roomId } = this.props.match.params;
+    const { roomId } = this.props;
     this.callApi(roomId)
       .then(res => {
         this.setState({ room: res });
@@ -34,42 +32,47 @@ class roomDetail extends Component {
 
   render() {
     const { room } = this.state;
+    let icons = [];
+
+    if(!utils.isEmpty(room)) {
+      room.serveType.map(item => {
+        item.children.map(icon => {
+          icons.push(icon);
+        })
+      })
+    }
+
     return (
       utils.isEmpty(room)? <Loading /> :
-      <div className="room-detail">
+      <div className="room-detail slideInUp">
         <div className="container">
-          <Banner image={room.coverImagePath} />
-          {/** 特色 */}
-          <div className="features">
-            <h2>特色</h2>
-            <ul>
-              {room.features.map((f, idx) => {
-                return (
-                  <li key={idx}>{f.text}</li>
-                );
-              })}
-            </ul>
-          </div>
-          {/** 设施 */}
-          <div className="devices">
-            <h2>房间设施</h2>
-            <ul>
-              {room.serveType[0].children.map((d, idx) => {
-                return (
-                  <li key={idx}>
-                    <i className={`fa ${d.className}`}></i>
-                    <span>{d.name}</span>
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="room-preview" style={{backgroundImage: `url('${room.coverImagePath}')`}}></div>
+          <div className="content-wrapper">
+            {/** 设施 */}
+            <div className="devices">
+              <ul>
+                {icons.map((d, idx) => {
+                  return (
+                    <li key={idx} className={(idx+1)%3===0?'p-l':null}>
+                      <i className={`fa ${d.className}`}></i>
+                      <span>{d.name}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            {/** 特色 */}
+            <div className="features">
+              <ul>
+                {room.features.map((f, idx) => {
+                  return (
+                    <li key={idx}>{f.text}</li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
-        <FooterBtn
-          color="#FFF"
-          bgColor="#4b2b95"
-          text="立即预定"
-          to={`/order/${room.roomId}`} />
       </div>
     );
   }

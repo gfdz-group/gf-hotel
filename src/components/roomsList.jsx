@@ -4,6 +4,7 @@ import Loading from './common/Loading';
 import BannerImage from './common/bannerImage'
 import HotelInfoBanner from './hotel/InfoBanner'
 import HotelCommentBanner from './hotel/Comment'
+import RoomDetail from './room/roomDetail'
 
 class RoomsList extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class RoomsList extends Component {
       hotel: null,
       hotelId: this.props.match.params.hotelId,
       rooms: null,
+      roomId: null,
     };
   }
 
@@ -44,6 +46,7 @@ class RoomsList extends Component {
     return (
       this.state.rooms && this.state.hotel ? (
       <div className="roomsList">
+        { this.state.roomId && <div className="modal" onClick={() => this.setState({roomId: null})}><RoomDetail roomId={this.state.roomId}/></div>}
         <div>
           <BannerImage image={this.state.hotel.faceImagePath}/>
           <HotelInfoBanner hotel={this.state.hotel} />
@@ -62,6 +65,7 @@ class RoomsList extends Component {
                 price={r.price}
                 labels="无早,免费取消"
                 expanded={idx===0?true:null}
+                onClick={() => this.setState({ roomId: r.id })}
               />)}
           </ul>
         </div>

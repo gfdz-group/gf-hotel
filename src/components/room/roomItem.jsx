@@ -16,7 +16,7 @@ class RoomItem extends Component {
     labels = labels.split(',');
 
     return (
-      <li className="room pos-r" key={id}>
+      <li className="room pos-r" key={id} onClick={this.props.onClick}>
         <div className="shade-wrapper pos-r" style={{backgroundImage: `url(${img})`}}>
           <div className="shade">
             <div className="desc pos-a">
