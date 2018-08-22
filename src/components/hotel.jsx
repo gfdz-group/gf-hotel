@@ -37,6 +37,11 @@ class Hotel extends Component {
     return body;
   }
 
+  navi(hotel) {
+    const { latitude, longitude, hotelName, hotelAddress } = hotel;
+    window.location = `http://apis.map.qq.com/uri/v1/marker?marker=coord:${latitude},${longitude};title:${hotelName};addr: ${hotelAddress};`;
+  }
+
   render() {
     const { hotel } = this.state;
     return (
@@ -44,7 +49,7 @@ class Hotel extends Component {
       <div className="hotel">
         <div className="container">
           {/** banner */}
-          <div className="block map-banner">
+          <div className="block map-banner" onClick={() => this.navi(hotel)}>
             <div className="map">
               <div className="cover pos-r">
                 {/* text */}
