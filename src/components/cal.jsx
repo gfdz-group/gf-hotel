@@ -29,12 +29,20 @@ class Calendar extends Component {
         childrenNumber: order && order.childrenNumber || 0,
       },
       handleChange: this.handleChange.bind(this),
+      handleNavi: this.handleNavi.bind(this),
     };
   }
 
   handleChange(field, value) {
     this.setState({[field]: value});
     this.updateLocalStorage();
+  }
+
+  handleNavi() {
+    const { hotels, hotelId } = this.state;
+    const hotel = hotels.find(h => h.id === hotelId);
+    const { latitude, longitude, hotelName, hotelAddress } = hotel;
+    window.location = `http://apis.map.qq.com/uri/v1/marker?marker=coord:${latitude},${longitude};title:${hotelName};addr: ${hotelAddress};`;
   }
 
   updateLocalStorage() {
@@ -88,7 +96,7 @@ class Calendar extends Component {
               );
             })}
           </select>
-          <i className="fa fa-map-marker"></i>
+          <i className="fa fa-map-marker" onClick={this.state.handleNavi}></i>
         </div>
         {/** 入住时间选择 */}
         <div className="date-picker">
