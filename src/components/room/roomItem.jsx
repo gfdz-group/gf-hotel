@@ -41,11 +41,11 @@ class RoomItem extends Component {
           {/** 展开/收起 */}
           <div className="toggle-btn">
             { !expanded ?
-              <div onClick={() => { this.setState({ expanded: true }) }}>
+              <div onClick={evt => { evt.stopPropagation(); this.setState({ expanded: true }) }}>
                 <i className="fa fa-angle-down"></i>
                 更多
               </div> :
-              <div onClick={() => { this.setState({ expanded: false }) }}>
+              <div onClick={evt => { evt.stopPropagation(); this.setState({ expanded: false }) }}>
                 <i className="fa fa-angle-up"></i>
                 收起
               </div> }

@@ -4,7 +4,6 @@
   height: calc( 100vh - 0.13333333rem );
   background-size: cover;
   background-attachment: fixed;
-  filter: brightness(1.2);
   .select-wrapper{
     display: flex;
     .ml(10);
@@ -120,6 +119,11 @@
         .fs(22);
         font-weight: 400;
         text-align: center;
+      }
+    }
+    &:last-child{
+      .number-picker-inner{
+        border-width: 0;
       }
     }
   }
