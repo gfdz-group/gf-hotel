@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from './common/Loading';
-import Banner from './common/bannerImage';
-import Header from './header';
-import Footer from './footer';
+import FooterBtn from './common/footerBtn';
 
 class HotelsList extends Component {
   constructor(props) {
@@ -18,7 +16,7 @@ class HotelsList extends Component {
   }
 
   componentWillMount() {
-    document.title = '官房大酒店';
+    document.title = '景罕人家';
     this.resetLocalStorage()
   }
 
@@ -58,7 +56,7 @@ class HotelsList extends Component {
                       <span className="sub-title"> {hotel.address}</span>
                       <div className="price-tag pos-a">
                         <span className="currency">¥</span>
-                        <span className="price">369</span>
+                        <span className="price">{hotel.lowestPrice ? hotel.lowestPrice : 0}</span>
                         <span>起</span>
                       </div>
                     </Link>
@@ -67,6 +65,12 @@ class HotelsList extends Component {
               })}
             </div>
           </div>
+          <FooterBtn
+            color="#FFF"
+            bgColor="#20b176"
+            text="我的订单"
+            to={`/profile/order-list`}
+          />
         </div>
       )
       : <Loading />

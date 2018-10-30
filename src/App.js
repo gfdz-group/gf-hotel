@@ -1,13 +1,9 @@
 import React from 'react';
 import URI from 'urijs';
-import {
-  Route,
-  /**Redirect*/
-} from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   HotelsList,
   Hotel,
-  //HouseLayout,
   Calendar,
   Order,
   Profile,
@@ -15,9 +11,10 @@ import {
   RoomDetail,
   DatePicker,
 } from './components';
+import OrderList from './components/profile/orderList';
 import './styles/index.less';
 
-const APP_ID = 'wxa8cb00b7504df771';
+const APP_ID = 'wx612951d29a720869';
 
 const requireAuth = (Component) => {
   return class HOC extends Component {
@@ -47,22 +44,22 @@ const requireAuth = (Component) => {
     componentWillMount() {
       const openId = localStorage.getItem('openId');
 
-      //   if (!openId) {
-      //     const uri = new URI(document.location.href);
-      //     const query = uri.query(true);
-      //     const {
-      //       code
-      //     } = query;
-      //     if (!Boolean(code)) {
-      //       document.location = this.generateGetCodeUrl(document.location.href);
-      //     } else {
-      //       this.callApi(code)
-      //         .then(res => {
-      //           localStorage.setItem('openId', res.openId);
-      //         })
-      //         .catch(err => { /** error handle */ });
-      //     }
-      //   }
+        if (!openId) {
+          const uri = new URI(document.location.href);
+          const query = uri.query(true);
+          const {
+            code
+          } = query;
+          if (!Boolean(code)) {
+            document.location = this.generateGetCodeUrl(document.location.href);
+          } else {
+            this.callApi(code)
+              .then(res => {
+                localStorage.setItem('openId', res.openId);
+              })
+              .catch(err => { /** error handle */ });
+          }
+        }
     }
 
     render() {
@@ -83,6 +80,7 @@ const App = () => {
       <Route exact path="/room/:roomId" component={RoomDetail} />
       {/**<Route exact path="/layouts/:hotel_id" component={HouseLayout} />*/}
       <Route exact path="/order/:roomId" component={Order} />
+      <Route exact path="/profile/order-list" component={OrderList} />
       <Route exact path="/profile" component={Profile} />
     </div>
   );

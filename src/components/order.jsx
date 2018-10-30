@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { isEmpty } from 'lodash';
-import Header from './header';
 import Switch from './common/switch';
 import Loading from './common/Loading';
 
@@ -11,13 +10,14 @@ class Order extends Component {
       order: {},
       hotelName: null,
       roomName: null,
-      username: null,
+      username: '',
       phone: '',
       productId: props.match.params.roomId,
       price: 0,
       openId: localStorage.getItem('openId'),
       handleChange: this.handleChange.bind(this),
     };
+    this.postData = this.postData.bind(this);
   }
 
   componentWillMount() {
@@ -51,14 +51,30 @@ class Order extends Component {
   }
 
   postData() {
-    return false;
-    // this.callApi()
-    //   .then(res => {
-    //     if(res.feedbackcode===1) {
-    //       const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
-    //       window.location = url;
-    //     }
-    //   });
+    const { username, phone } = this.state;
+    if(username.trim()===''||phone.trim()==='') {
+      alert('请填写完整联系人信息');
+      return;
+    }
+    this.callApi()
+      .then(res => {
+        if(res.feedbackcode===1) {
+          const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
+          window.location = url;
+        }
+      });
+  }
+
+  formatDate(date) {
+    var d = new Date(date),
+    month = '' + (d.getMonth() + 1),
+    day = '' + d.getDate(),
+    year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 
   async callApi() {
@@ -66,17 +82,18 @@ class Order extends Component {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify({
-        linkMan: `${this.state.username}}`,
+        linkMan: `${this.state.username}`,
         phone: this.state.phone,
         productId: this.state.productId,
         price: (this.state.price * this.state.order.roomsCount * this.state.order.daysDiff).toFixed(2),
-        inDate: this.state.order.inDate,
-        outDate: this.state.order.outDate,
+        inDate: this.formatDate(this.state.order.inDate),
+        outDate: this.formatDate(this.state.order.outDate),
         days: this.state.order.daysDiff,
         roomsCount: this.state.order.roomsCount,
         adultNumber: this.state.order.adultNumber,
         childrenNumber: this.state.order.childrenNumber,
         isReceiveSMS: 1,
+        openId: localStorage.getItem('openId')
       }),
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -157,7 +174,7 @@ class Order extends Component {
               </div>
             </div>
 
-            <div className="form-group-wrapper">
+            <div className="form-group-wrapper" style={{display: 'none'}}>
               <div className="form-group" style={{ justifyContent: 'space-between' }}>
                 <div className="coupon">
                   <h2>优惠券</h2>
