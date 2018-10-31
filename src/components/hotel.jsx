@@ -66,7 +66,7 @@ class Hotel extends Component {
               </div>
             </div>
             <div className="phone">
-              酒店电话: 0888-5188888
+              酒店电话: {hotel.phone}
             </div>
           </div>
           {/** 酒店介绍 */}

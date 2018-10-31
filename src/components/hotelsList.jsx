@@ -55,7 +55,7 @@ class HotelsList extends Component {
                       <span className="sub-title"> {hotel.address}</span>
                       <div className="price-tag pos-a">
                         <span className="currency">¥</span>
-                        <span className="price">369</span>
+                        <span className="price">{hotel.lowestPrice ? hotel.lowestPrice : 100}</span>
                         <span>起</span>
                       </div>
                     </Link>
