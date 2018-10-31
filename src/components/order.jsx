@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { isEmpty } from 'lodash';
-import Header from './header';
+import { view } from 'react-easy-state';
 import Switch from './common/switch';
 import Loading from './common/Loading';
+import order from '../stores/order';
+import utils from '../utils';
 
 class Order extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: {},
       hotelName: null,
       roomName: null,
-      username: null,
+      username: '',
       phone: '',
       productId: props.match.params.roomId,
       price: 0,
@@ -22,18 +23,15 @@ class Order extends Component {
 
   componentWillMount() {
     document.title = '创建订单';
-
-    /** cache order */
-    if(localStorage.getItem('order')) {
-      const order = JSON.parse(localStorage.getItem('order'));
-      this.setState({order});
-    }
   }
 
   componentDidMount() {
     const { roomId } = this.props.match.params;
+    let { inDate } = order;
+    inDate = utils.fullDateFormat(inDate);
+
     if(roomId) {
-      fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}`)
+      fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}&inDate=${inDate}`)
         .then(res => {
           res.json().then(body => {
             this.setState({
@@ -51,31 +49,39 @@ class Order extends Component {
   }
 
   postData() {
-    return false;
-    // this.callApi()
-    //   .then(res => {
-    //     if(res.feedbackcode===1) {
-    //       const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
-    //       window.location = url;
-    //     }
-    //   });
+    const { username, phone } = this.state;
+    if (username.trim()===''||phone.trim()==='') {
+      alert('联系人信息填写不完整');
+      return;
+    }
+    this.callApi()
+      .then(res => {
+        if(res.feedbackcode===1) {
+          const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
+          window.location = url;
+        }
+      });
   }
 
   async callApi() {
+    let { inDate, outDate } = order;
+    inDate = utils.fullDateFormat(inDate);
+    outDate = utils.fullDateFormat(outDate);
+
     const res = await fetch('/api/hotel/hotelManager/createOrder.do', {
       method: 'POST',
       credentials: 'same-origin',
       body: JSON.stringify({
-        linkMan: `${this.state.username}}`,
+        linkMan: `${this.state.username}`,
         phone: this.state.phone,
         productId: this.state.productId,
-        price: (this.state.price * this.state.order.roomsCount * this.state.order.daysDiff).toFixed(2),
-        inDate: this.state.order.inDate,
-        outDate: this.state.order.outDate,
-        days: this.state.order.daysDiff,
-        roomsCount: this.state.order.roomsCount,
-        adultNumber: this.state.order.adultNumber,
-        childrenNumber: this.state.order.childrenNumber,
+        price: (this.state.price * order.roomsCount * order.daysDiff).toFixed(2),
+        inDate: inDate,
+        outDate: outDate,
+        days: order.daysDiff,
+        roomsCount: order.roomsCount,
+        adultNumber: order.adultNumber,
+        childrenNumber: order.childrenNumber,
         isReceiveSMS: 1,
       }),
       headers: new Headers({
@@ -87,7 +93,7 @@ class Order extends Component {
   }
 
   render() {
-    const { username, phone, hotelName, roomName, order, price } = this.state;
+    const { username, phone, hotelName, roomName, price } = this.state;
     return (
       (isEmpty(hotelName) || isEmpty(roomName)) ? <Loading /> :
       <div className="order">
@@ -116,16 +122,15 @@ class Order extends Component {
                 <label htmlFor="">房间数</label>
                 <div style={{display: 'flex', alignItems: 'center'}}>
                   <span className="iconfont icon-minus" onClick={() => {
-                    if(order.roomsCount>1)
-                      this.setState({
-                        order: Object.assign(order, { roomsCount: order.roomsCount-1 })
-                      })
+                    const count = order.roomsCount;
+                    if (count>1) {
+                      order.update('roomsCount', count-1);
+                    }
                   }} />
                   <span className="roomsCount">{order.roomsCount}</span>
                   <span className="iconfont icon-plus" onClick={() => {
-                    this.setState({
-                      order: Object.assign(order, { roomsCount: order.roomsCount+1 })
-                    })
+                    const count = order.roomsCount;
+                    order.update('roomsCount', count+1);
                   }} />
                 </div>
               </div>
@@ -214,4 +219,4 @@ class Order extends Component {
   }
 }
 
-export default Order;
+export default view(Order);

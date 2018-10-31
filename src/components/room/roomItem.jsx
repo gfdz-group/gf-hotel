@@ -35,7 +35,7 @@ class RoomItem extends Component {
         <div className="toggle-bar">
           <div className={`price ${expanded?'price-expanded':null}`}>
             <span>¥</span>
-            <div className="di-b origin">{ originPrice%1===0 ? (parseInt(originPrice)).toFixed(2) : originPrice}</div>
+            <div className="di-b origin">{ originPrice%1===0 ? (parseInt(originPrice, 10)).toFixed(2) : originPrice}</div>
             起
           </div>
           {/** 展开/收起 */}
@@ -55,7 +55,7 @@ class RoomItem extends Component {
         { expanded && <div className="order-bar">
           <div className="price">
             微信专享价
-            <span>¥ {price%1===0 ? (parseInt(price)).toFixed(2): price} </span>
+            <span>¥ {price%1===0 ? (parseInt(price, 10)).toFixed(2): price} </span>
           </div>
           <div className="order-btn">
             <Link to={`/order/${id}`}>预订</Link>

@@ -1,13 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import URI from 'urijs';
-import {
-  Route,
-  /**Redirect*/
-} from "react-router-dom";
+import { Route } from "react-router-dom";
 import {
   HotelsList,
   Hotel,
-  //HouseLayout,
   Calendar,
   Order,
   Profile,
@@ -71,21 +67,22 @@ const requireAuth = (Component) => {
   }
 }
 
-
-const App = () => {
-  return (
-    <div>
-      <Route exact path="/" component={requireAuth(HotelsList)} />
-      <Route exact path="/hotel/:hotelId" component={Hotel} />
-      <Route path="/calendar/:hotelId?" component={Calendar} />
-      <Route path="/date-picker" component={DatePicker} />
-      <Route exact path="/rooms/:hotelId" component={RoomsList} />
-      <Route exact path="/room/:roomId" component={RoomDetail} />
-      {/**<Route exact path="/layouts/:hotel_id" component={HouseLayout} />*/}
-      <Route exact path="/order/:roomId" component={Order} />
-      <Route exact path="/profile" component={Profile} />
-    </div>
-  );
-};
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Route exact path="/" component={requireAuth(HotelsList)} />
+        <Route exact path="/hotel/:hotelId" component={Hotel} />
+        <Route path="/calendar/:hotelId?" component={Calendar} />
+        <Route path="/date-picker" component={DatePicker} />
+        <Route exact path="/rooms/:hotelId" component={RoomsList} />
+        <Route exact path="/room/:roomId" component={RoomDetail} />
+        {/**<Route exact path="/layouts/:hotel_id" component={HouseLayout} />*/}
+        <Route exact path="/order/:roomId" component={Order} />
+        <Route exact path="/profile" component={Profile} />
+      </div>
+    );
+  }
+}
 
 export default App;

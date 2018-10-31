@@ -3,6 +3,10 @@ export default {
     return new Date(dateObj).toISOString().substr(5,5).replace('-','/');
   },
 
+  fullDateFormat(dateObj) {
+    return new Date(dateObj).toISOString().substr(0,10);
+  },
+
   daysDiff(date1, date2) {
     const dt1 = new Date(date1);
     const dt2 = new Date(date2);

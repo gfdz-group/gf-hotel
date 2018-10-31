@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Loading from './common/Loading';
 import utils from '../utils';
-import Header from './header';
-import Banner from './common/bannerImage';
 import FooterBtn from './common/footerBtn';
 
 class Hotel extends Component {

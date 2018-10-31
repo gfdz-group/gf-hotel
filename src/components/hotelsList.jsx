@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import hotels from '../stores/hotels'
 import Loading from './common/Loading';
-import Banner from './common/bannerImage';
-import Header from './header';
-import Footer from './footer';
 
 class HotelsList extends Component {
   constructor(props) {
@@ -17,6 +15,16 @@ class HotelsList extends Component {
     localStorage.setItem('order', null);
   }
 
+  async callApi() {
+    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do',{
+      method: 'GET',
+      credentials: 'same-origin',
+    });
+    const body = await res.json();
+    if (res.status !== 200) throw Error(body.message);
+    return body;
+  }
+
   componentWillMount() {
     document.title = '官房大酒店';
     this.resetLocalStorage()
@@ -26,20 +34,9 @@ class HotelsList extends Component {
     this.callApi()
       .then(res => {
         this.setState({hotels: res});
-        /** cache hotel lists */
-        localStorage.setItem('hotelLists', JSON.stringify(res));
+        hotels.create(res);
       })
       .catch(err => { console.error(err); });
-  }
-
-  async callApi() {
-    const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do',{
-      method: 'GET',
-      credentials: 'same-origin',
-    });
-    const body = await res.json();
-    if (res.status !== 200) throw Error(body.message);
-    return body;
   }
 
   render() {

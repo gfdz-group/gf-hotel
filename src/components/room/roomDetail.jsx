@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Loading from '../common/Loading';
+import order from '../../stores/order'
 import utils from '../../utils';
 
 class roomDetail extends Component {
@@ -12,22 +13,25 @@ class roomDetail extends Component {
 
   componentDidMount() {
     const { roomId } = this.props;
-    this.callApi(roomId)
+    let { inDate } = order;
+    inDate = utils.fullDateFormat(inDate);
+
+    this.callApi(roomId, inDate)
       .then(res => {
-        this.setState({ room: res });
+        this.setState({ room: res })
       })
-      .catch(err => { console.error(err); })
+      .catch(err => { console.error(err) })
   }
 
-  async callApi(roomId) {
+  async callApi(roomId, inDate) {
     if(!roomId) { throw new Error('Missing room id parameter'); }
-    const res = await fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}`, {
+    const res = await fetch(`/api/hotel/hotelManager/getRoom.do?id=${roomId}&inDate=${inDate}`, {
       method: 'GET',
       credentials: 'same-origin',
     });
     const body = await res.json();
-    if(res.status!==200) { throw new Error(body.message); }
-    return body;
+    if(res.status!==200) { throw new Error(body.message) }
+    return body
   }
 
   render() {

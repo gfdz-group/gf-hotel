@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import RoomItem from './room/roomItem';
 import Loading from './common/Loading';
-import BannerImage from './common/bannerImage'
-import HotelInfoBanner from './hotel/InfoBanner'
-import HotelCommentBanner from './hotel/Comment'
-import RoomDetail from './room/roomDetail'
+import BannerImage from './common/bannerImage';
+import HotelInfoBanner from './hotel/InfoBanner';
+import HotelCommentBanner from './hotel/Comment';
+import RoomDetail from './room/roomDetail';
+import order from '../stores/order';
+import utils from '../utils';
 
 class RoomsList extends Component {
   constructor(props) {
@@ -22,14 +24,19 @@ class RoomsList extends Component {
   }
 
   componentDidMount() {
+    let { inDate, outDate, roomsCount, adultNumber, childrenNumber } = order;
+    inDate = utils.fullDateFormat(inDate)
+    outDate= utils.fullDateFormat(outDate)
+
     // hotel
     this.callApi(`/api/hotel/hotelManager/getHotelInfo.do?id=${this.state.hotelId}`)
       .then(res => this.setState({hotel: res}))
       .catch(err => console.error(err));
     // room list
-    this.callApi(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}`)
-      .then(res => this.setState({rooms: res.roomList}))
-      .catch(err => console.error(err));
+    if(inDate && outDate)
+      this.callApi(`/api/hotel/hotelManager/queryRoom.do?id=${this.state.hotelId}&inDate=${inDate}&outDate=${outDate}&num=${roomsCount}&adultNum=${adultNumber}&childrenNum=${childrenNumber}`)
+        .then(res => this.setState({rooms: res.roomList}))
+        .catch(err => console.error(err));
   }
 
   async callApi(url) {

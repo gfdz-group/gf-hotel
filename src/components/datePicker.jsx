@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DayPicker, { DateUtils } from 'react-day-picker';
+import order from '../stores/order';
 import utils from '../utils'
 import 'react-day-picker/lib/style.css';
 
@@ -13,14 +14,10 @@ class DatePicker extends Component {
   constructor() {
     super()
     this.state = {
-      from: undefined,
-      to: undefined,
+      from: order.inDate,
+      to: order.outDate,
     }
     this.handleDayClick = this.handleDayClick.bind(this);
-  }
-
-  updateLocalStorage(order) {
-    localStorage.setItem('order', JSON.stringify(order));
   }
 
   handleDayClick(day) {
@@ -29,21 +26,14 @@ class DatePicker extends Component {
   }
 
   componentDidMount() {
-    if(localStorage.getItem('order')) {
-      const order = JSON.parse(localStorage.getItem('order'));
-      this.setState({ from: new Date(order.inDate), to: new Date(order.outDate) });
-    }
+    document.title = '日期选择';
   }
 
   componentWillUnmount() {
     const { from, to } = this.state;
-    let order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : {};
-    order.inDate = from;
-    order.inDateShow = utils.dateFormat(from);
-    order.outDate = to;
-    order.outDateShow = utils.dateFormat(to);
-    order.daysDiff = utils.daysDiff(from, to)
-    this.updateLocalStorage(order);
+    order.update('inDate', from);
+    order.update('outDate', to);
+    order.update('daysDiff',  utils.daysDiff(from, to));
   }
 
   render() {

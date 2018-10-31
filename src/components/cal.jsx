@@ -1,33 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { view } from 'react-easy-state'
 import utils from '../utils';
 import FooterBtn from './common/footerBtn';
 import { Carousel } from 'react-responsive-carousel';
+import hotels from '../stores/hotels';
+import order from '../stores/order'
 import 'react-responsive-carousel/lib/styles/carousel.css';
 
 class Calendar extends Component {
   constructor(props) {
     super(props);
-    const hotels = JSON.parse(localStorage.getItem('hotelLists'));
     const hotelId = this.props.match.params.hotelId? this.props.match.params.hotelId: hotels[0].id;
-    const order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : {};
-
-    const curr = new Date();
-    curr.setDate(curr.getDate()+1);
 
     this.state = {
-      hotels,
       hotelId,
-      order: {
-        inDate: new Date(),
-        outDate: curr,
-        inDateShow: utils.dateFormat(new Date()),
-        outDateShow: utils.dateFormat(curr),
-        daysDiff: 1,
-        roomsCount: order && order.roomsCount || 1,
-        adultNumber: order && order.adultNumber || 1,
-        childrenNumber: order && order.childrenNumber || 0,
-      },
       handleChange: this.handleChange.bind(this),
       handleNavi: this.handleNavi.bind(this),
     };
@@ -39,33 +26,19 @@ class Calendar extends Component {
   }
 
   handleNavi() {
-    const { hotels, hotelId } = this.state;
-    const hotel = hotels.find(h => h.id === hotelId);
+    const { hotelId } = this.state;
+    const hotel = hotels.all.find(h => h.id === hotelId);
     const { latitude, longitude, hotelName, hotelAddress } = hotel;
     window.location = `http://apis.map.qq.com/uri/v1/marker?marker=coord:${latitude},${longitude};title:${hotelName};addr: ${hotelAddress};`;
   }
 
-  updateLocalStorage() {
-    localStorage.setItem('order', JSON.stringify(this.state.order));
-  }
-
   componentDidMount() {
-    document.title = '房间';
-    const order = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')) : {};
-    const inDate = order && order.inDate ? order.inDate : null
-    const outDate =  order && order.outDate ? order.outDate : null;
-    if(inDate && outDate) {
-      const daysDiff = utils.daysDiff( inDate,outDate )
-      this.setState({ order: Object.assign(order, { inDate, outDate, daysDiff }) })
-    }
-  }
-
-  componentWillUnmount() {
-    this.updateLocalStorage();
+    document.title = '入住时间';
   }
 
   render() {
-    const { order } = this.state;
+    const inDateShow = utils.dateFormat(order.inDate);
+    const outDateShow = utils.dateFormat(order.outDate);
     return (
       <div className="cal">
 
@@ -86,7 +59,7 @@ class Calendar extends Component {
               this.state.handleChange('hotelId', evt.target.value);
             }}
           >
-            { this.state.hotels.map((h, idx) => {
+            { hotels.all.map((h, idx) => {
               return (
                 <option
                   key={idx}
@@ -104,7 +77,7 @@ class Calendar extends Component {
             <label className="db">入住日期</label>
             <span className="date">
               <Link to="/date-picker">
-                {order.inDateShow}
+                {inDateShow}
               </Link>
             </span>
           </div>
@@ -118,7 +91,7 @@ class Calendar extends Component {
             <label className="db">退房日期</label>
             <span className="date">
               <Link to="/date-picker">
-                {order.outDateShow}
+                {outDateShow}
               </Link>
             </span>
           </div>
@@ -132,19 +105,13 @@ class Calendar extends Component {
                 <span className="iconfont icon-minus" onClick={() => {
                   const count = order.roomsCount;
                   if(count>1) {
-                    this.state.handleChange('order', {
-                      ...order,
-                      roomsCount: count-1,
-                    })
+                    order.update('roomsCount', count-1);
                   }
                 }}></span>
                 <h1>{order.roomsCount}</h1>
                 <span className="iconfont icon-plus" onClick={() => {
                   const count = order.roomsCount;
-                  this.state.handleChange('order', {
-                    ...order,
-                    roomsCount: count+1,
-                  });
+                  order.update('roomsCount', count+1);
                 }}></span>
               </div>
             </div>
@@ -154,21 +121,15 @@ class Calendar extends Component {
               <label className="lbl-title">成人 (每间)</label>
               <div className="picker">
                   <span className="iconfont icon-minus" onClick={() => {
-                      const num = order.adultNumber;
-                      if(num>1) {
-                          this.state.handleChange('order', {
-                              ...order,
-                              adultNumber: num-1,
-                          });
-                      }
+                    const num = order.adultNumber;
+                    if(num>1) {
+                      order.update('adultNumber', num-1);
+                    }
                   }}></span>
                   <h1>{order.adultNumber}</h1>
                   <span className="iconfont icon-plus" onClick={() => {
-                      const num = order.adultNumber;
-                      this.state.handleChange('order', {
-                          ...order,
-                          adultNumber: num+1,
-                      });
+                    const num = order.adultNumber;
+                    order.update('adultNumber', num+1);
                   }}></span>
               </div>
             </div>
@@ -180,19 +141,13 @@ class Calendar extends Component {
                   <span className="iconfont icon-minus" onClick={() => {
                       const num = order.childrenNumber;
                       if(num>0) {
-                          this.state.handleChange('order', {
-                              ...order,
-                              childrenNumber: num-1,
-                          });
+                        order.update('childrenNumber', num-1)
                       }
                   }}></span>
                   <h1>{order.childrenNumber}</h1>
                   <span className="iconfont icon-plus" onClick={() => {
                       const num = order.childrenNumber;
-                      this.state.handleChange('order', {
-                          ...order,
-                          childrenNumber: num+1,
-                      })
+                      order.update('childrenNumber', num+1);
                   }}></span>
               </div>
             </div>
@@ -210,4 +165,4 @@ class Calendar extends Component {
   }
 }
 
-export default Calendar;
+export default view(Calendar);
