@@ -11,7 +11,7 @@ import 'react-responsive-carousel/lib/styles/carousel.css';
 class Calendar extends Component {
   constructor(props) {
     super(props);
-    const hotelId = this.props.match.params.hotelId? this.props.match.params.hotelId: hotels[0].id;
+    const hotelId = this.props.match.params.hotelId? this.props.match.params.hotelId: ( !hotels.isEmpty ? hotels[0].id : null );
 
     this.state = {
       hotelId,
@@ -22,11 +22,11 @@ class Calendar extends Component {
 
   handleChange(field, value) {
     this.setState({[field]: value});
-    this.updateLocalStorage();
   }
 
   handleNavi() {
     const { hotelId } = this.state;
+    if(!hotelId || hotels.isEmpty) return;
     const hotel = hotels.all.find(h => h.id === hotelId);
     const { latitude, longitude, hotelName, hotelAddress } = hotel;
     window.location = `http://apis.map.qq.com/uri/v1/marker?marker=coord:${latitude},${longitude};title:${hotelName};addr: ${hotelAddress};`;
@@ -52,7 +52,7 @@ class Calendar extends Component {
         </Carousel>
 
         {/** 酒店地址选择 */}
-        <div className="select-wrapper">
+        <div className="select-wrapper" style={{ display: hotels.isEmpty ? 'none' : 'flex' }}>
           <select
             className="pos"
             onChange={evt => {
