@@ -171,3 +171,98 @@
     }
   }
 }
+
+.order-list{
+  ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li{
+      background: #FFF;
+      .mb(10);
+      .hd{
+        position: relative;
+        .pt(10);
+        .pb(10);
+        .pl(15);
+        .pr(15);
+        text-align: right;
+        line-height: 2.5em;
+        label {
+          float: left;
+          margin-right: 1em;
+          min-width: 4em;
+          color: #999;
+          text-align: justify;
+          text-align-last: justify;
+        }
+        em {
+          font-style: normal;
+          .fs(16);
+        }
+        &:after{
+          content: " ";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          height: 1px;
+          border-bottom: 1px solid #d9d9d9;
+          color: #d9d9d9;
+          transform-origin: 0 100%;
+          transform: scaleY(.5);
+          left: 15px;
+        }
+      }
+      .bd{
+        position: relative;
+        padding: 10px 15px;
+        font-size: .9em;
+        text-align: right;
+        color: #999;
+        line-height: 2;
+        label {
+          float: left;
+          margin-right: 1em;
+          min-width: 4em;
+          color: #999;
+          text-align: justify;
+          text-align-last: justify;
+        }
+        em {
+          display: block;
+          overflow: hidden;
+          word-break: normal;
+          word-wrap: break-word;
+        }
+        &:after {
+          content: " ";
+          position: absolute;
+          left: 0;
+          right: 0;
+          height: 1px;
+          color: #d9d9d9;
+          bottom: 0;
+          border-bottom: 1px solid #d9d9d9;
+          transform-origin: 0 100%;
+          transform: scaleY(.5);
+        }
+      }
+      .ft{
+        position: relative;
+        display: flex;
+        .lh(50);
+        *{
+          position: relative;
+          display: block;
+          flex: 1;
+          color: #3cc51f;
+          text-align: center;
+        }
+      }
+      &:last-child {
+        .mb(0);
+      }
+    }
+  }
+}

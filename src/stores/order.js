@@ -4,6 +4,7 @@ const curr = new Date();
 curr.setDate(curr.getDate()+1);
 
 const order = store({
+  list: [],
   inDate: new Date(),
   outDate: curr,
   daysDiff: 1,

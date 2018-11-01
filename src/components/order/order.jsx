@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { isEmpty } from 'lodash';
 import { view } from 'react-easy-state';
-import Switch from './common/switch';
-import Loading from './common/Loading';
-import order from '../stores/order';
-import utils from '../utils';
+import Switch from '../common/switch';
+import Loading from '../common/Loading';
+import order from '../../stores/order';
+import utils from '../../utils';
 
 class Order extends Component {
   constructor(props) {
@@ -21,11 +21,9 @@ class Order extends Component {
     };
   }
 
-  componentWillMount() {
-    document.title = '创建订单';
-  }
-
   componentDidMount() {
+    document.title = '创建订单';
+
     const { roomId } = this.props.match.params;
     let { inDate } = order;
     inDate = utils.fullDateFormat(inDate);
@@ -50,20 +48,27 @@ class Order extends Component {
 
   postData() {
     const { username, phone } = this.state;
+    const openId = localStorage.getItem('openId');
     if (username.trim()===''||phone.trim()==='') {
       alert('联系人信息填写不完整');
       return;
     }
-    this.callApi()
+    if (!openId || openId === 'null') {
+        alert('获取微信用户ID失败')
+        return;
+    }
+    this.callApi(openId)
       .then(res => {
         if(res.feedbackcode===1) {
-          const url = `${res.orderPayLink}&openId=${localStorage.getItem('openId')}`;
+          const url = `${res.orderPayLink}&openId=${openId}`;
           window.location = url;
+        } else {
+          alert(res.message);
         }
       });
   }
 
-  async callApi() {
+  async callApi(openId) {
     let { inDate, outDate } = order;
     inDate = utils.fullDateFormat(inDate);
     outDate = utils.fullDateFormat(outDate);
@@ -83,6 +88,7 @@ class Order extends Component {
         adultNumber: order.adultNumber,
         childrenNumber: order.childrenNumber,
         isReceiveSMS: 1,
+        openId,
       }),
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -94,6 +100,8 @@ class Order extends Component {
 
   render() {
     const { username, phone, hotelName, roomName, price } = this.state;
+    const inDateShow = utils.dateFormat(order.inDate);
+    const outDateShow = utils.dateFormat(order.outDate);
     return (
       (isEmpty(hotelName) || isEmpty(roomName)) ? <Loading /> :
       <div className="order">
@@ -103,8 +111,8 @@ class Order extends Component {
             <h2>{hotelName}</h2>
             <ul className="room-info">
               <li>
-                <span>入住 {order.inDateShow}</span>
-                <span>离店 {order.outDateShow}</span>
+                <span>入住 {inDateShow}</span>
+                <span>离店 {outDateShow}</span>
                 <span>共 {order.daysDiff} 晚</span>
               </li>
               <li>
