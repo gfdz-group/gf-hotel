@@ -27,7 +27,7 @@ class App extends Component {
         <Route exact path="/room/:roomId" component={RoomDetail} />
         <Route exact path="/order/:roomId" component={Order} />
         <Route exact path="/orders" component={OrderList} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile" component={withAuth(Profile)} />
       </div>
     );
   }

@@ -5,7 +5,7 @@ import utils from '../utils'
 import 'react-day-picker/lib/style.css';
 
 const MONTHS = [
-  '1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月'
+  '1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'
 ]
 
 const WEEKDAYS_SHORT = ['日', '一', '二', '三', '四', '五', '六'];

@@ -47,6 +47,7 @@ class OrderList extends Component {
 
   render() {
     const { list } = order;
+    console.log('here:', list);
     return (
       <div className="order-list">
         <ul>

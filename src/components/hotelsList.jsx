@@ -11,10 +11,6 @@ class HotelsList extends Component {
     };
   }
 
-  resetLocalStorage() {
-    localStorage.setItem('order', null);
-  }
-
   async callApi() {
     const res = await fetch('/api/hotel/hotelManager/getHotelInfoList.do',{
       method: 'GET',
@@ -25,12 +21,8 @@ class HotelsList extends Component {
     return body;
   }
 
-  componentWillMount() {
-    document.title = '官房大酒店';
-    this.resetLocalStorage()
-  }
-
   componentDidMount() {
+    document.title = '官房大酒店';
     this.callApi()
       .then(res => {
         this.setState({hotels: res});

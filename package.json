@@ -104,5 +104,6 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0"
   },
-  "proxy": "http://120.76.102.67:8280/"
+  "proxy": "http://120.76.102.67:8280/",
+  "homepage": "http://gfjd.wyglpt.com/app"
 }

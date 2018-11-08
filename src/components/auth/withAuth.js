@@ -28,14 +28,12 @@ const withAuth = (Component) => {
       }
     }
 
-    componentWillMount() {
+    componentDidMount() {
       const openId = localStorage.getItem('openId');
-      if (!openId) {
+      if (!Boolean(openId) || openId==='null') {
         const uri = new URI(document.location.href);
         const query = uri.query(true);
-        const {
-          code
-        } = query;
+        const { code } = query;
         if (!Boolean(code)) {
           document.location = this.generateGetCodeUrl(document.location.href);
         } else {
